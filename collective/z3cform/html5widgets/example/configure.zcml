@@ -8,8 +8,8 @@
     name="example.collective.z3cform.html5widgets"
     for="*"
     class=".html5widgets.Example"
-    template="html5widgets.pt"
     permission="zope2.View"
     />
+  <adapter factory=".html5widgets.ExampleAdapter"/>
 
 </configure>

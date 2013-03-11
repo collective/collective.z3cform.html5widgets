@@ -23,6 +23,7 @@ setup(name='collective.z3cform.html5widgets',
       zip_safe=False,
       install_requires=[
           'setuptools',
+          'plone.app.z3cform',
           # -*- Extra requirements: -*-
       ],
       entry_points="""
