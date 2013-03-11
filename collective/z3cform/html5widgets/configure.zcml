@@ -1,0 +1,22 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective.z3cform.html5widgets">
+
+  <browser:resourceDirectory
+    name="collective.z3cform.html5widgets"
+    directory="resources"
+    />
+
+  <include file="upgrades.zcml"/>
+
+  <genericsetup:registerProfile
+      name="default"
+      title="collective.z3cform.html5widgets"
+      directory="profiles/default"
+      description='Extension profile for collective.z3cform.html5widgets.'
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+</configure>
