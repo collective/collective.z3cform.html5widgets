@@ -3,16 +3,10 @@
 from zope import schema
 from zope import interface
 from zope import component
-from zope import i18nmessageid
-import z3c.form
 import z3c.form.browser.widget
 import z3c.form.widget
-from datetime import date, datetime
 from interfaces import IDateWidget
 from zope.i18n.format import DateTimeParseError
-from zope.i18n import translate
-
-_ = i18nmessageid.MessageFactory('collective.z3cform.html5widgets')
 
 
 class DateWidget(z3c.form.browser.widget.HTMLTextInputWidget,
