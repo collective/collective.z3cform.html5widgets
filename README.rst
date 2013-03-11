@@ -1,6 +1,24 @@
 Introduction
 ============
 
+This addon provide the following HTML5 widgets:
+
+* date
+
+TODO: add the following widgets
+
+* time
+* datetime
+* month
+* week
+* email
+* number (+step)
+* range
+* password
+* tel
+* url
+* search
+* color
 
 
 How to install
@@ -8,6 +26,14 @@ How to install
 
 This addon can be installed has any other addons. please follow official
 documentation_
+
+If you want to support theses widgets on incapable browser you must consider
+using polyfill.
+
+Corresponding addons:
+
+* collective.js.webshims
+
 
 Credits
 =======
