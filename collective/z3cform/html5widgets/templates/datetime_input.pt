@@ -1,6 +1,6 @@
 <tal:root>
 
-<input type="text" id="" name="" class="" title="" lang="" disabled=""
+<input type="datetime" id="" name="" class="" title="" lang="" disabled=""
        readonly="" alt="" tabindex="" accesskey="" size="2" maxlength="2"
        tal:attributes="id string:${view/id}-day;
                        name string:${view/name}-day;

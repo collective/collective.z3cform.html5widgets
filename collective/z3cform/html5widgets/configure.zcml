@@ -17,36 +17,8 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
     <include file="upgrades.zcml"/>
+    <include file="widget_date.zcml"/>
 
-    <!-- Date widget -->
-    <class class=".widget_date.DateWidget">
-        <require permission="zope.Public"
-                 interface=".interfaces.IDateWidget" />
-    </class>
-    <!-- use Date by default -->
-    <class class="zope.schema._field.Date">
-        <implements interface=".interfaces.IDateField"/>
-    </class>
-    <adapter
-        factory=".widget_date.DateFieldWidget"
-        for=".interfaces.IDateField
-             z3c.form.interfaces.IFormLayer" />
-    <!-- Date widget -->
-    <z3c:widgetTemplate
-        mode="display"
-        widget=".interfaces.IDateWidget"
-        layer="z3c.form.interfaces.IFormLayer"
-        template="templates/display.pt" />
-    <z3c:widgetTemplate
-        mode="input"
-        widget=".interfaces.IDateWidget"
-        layer="z3c.form.interfaces.IFormLayer"
-        template="templates/date_input.pt" />
-    <z3c:widgetTemplate
-        mode="hidden"
-        widget=".interfaces.IDateWidget"
-        layer="z3c.form.interfaces.IFormLayer"
-        template="templates/hidden.pt" />
 
 
 </configure>

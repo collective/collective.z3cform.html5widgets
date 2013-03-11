@@ -16,7 +16,14 @@ class ExampleAdapter(object):
 
     def __init__(self, context):
         self.context = context
-        self.date = None
+
+    def get_date(self):
+        return self.context.created().asdatetime()
+
+    def set_date(self, value):
+        self.context.setCreationDate(value)
+
+    date = property(get_date, set_date)
 
 
 class ExampleForm(form.Form):

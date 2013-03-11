@@ -3,7 +3,7 @@
 <input type="date" id="" name="" class="" title="" lang="" disabled=""
        readonly="" alt="" tabindex="" accesskey="" size="2" maxlength="2"
        tal:attributes="id string:${view/id}-day;
-                       name string:${view/name}-date;
+                       name string:${view/name};
                        class view/klass;
                        style view/style;
                        title view/title;
@@ -18,7 +18,7 @@
                        onkeypress view/onkeypress;
                        onkeydown view/onkeydown;
                        onkeyup view/onkeyup;
-                       value view/date;
+                       value view/value;
                        disabled view/disabled;
                        tabindex view/tabindex;
                        onfocus view/onfocus;
