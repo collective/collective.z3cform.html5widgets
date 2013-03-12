@@ -17,6 +17,7 @@ class ExampleSchema(interface.Interface):
     email = schema.ASCIILine(title=u"Email", required=False)
     month = schema.Date(title=u"Month", required=False)
     number = schema.Int(title=u"Number", required=False)
+    password = schema.Password(title=u"Password", required=False)
     tel = schema.ASCIILine(title=u"Telephone", required=False)
     time = schema.Time(title=u"Time", required=False)
     #required = schema.ASCIILine(title=u"", required=True)
