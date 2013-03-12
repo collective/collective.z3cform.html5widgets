@@ -24,5 +24,6 @@
     <include file="widget_number.zcml"/>
     <include file="widget_tel.zcml"/>
     <include file="widget_time.zcml"/>
+    <include file="widget_week.zcml"/>
 
 </configure>

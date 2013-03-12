@@ -6,6 +6,7 @@ from plone.z3cform import layout
 from collective.z3cform.html5widgets.widget_tel import TelFieldWidget
 from collective.z3cform.html5widgets.widget_month import MonthFieldWidget
 from collective.z3cform.html5widgets.widget_number import NumberFieldWidget
+from collective.z3cform.html5widgets.widget_week import WeekFieldWidget
 
 
 class ExampleSchema(interface.Interface):
@@ -17,6 +18,7 @@ class ExampleSchema(interface.Interface):
     tel = schema.ASCIILine(title=u"Telephone", required=False)
     time = schema.Time(title=u"Time", required=False)
     #required = schema.ASCIILine(title=u"", required=True)
+    week = schema.Date(title=u"Week", required=False)
 
 
 class ExampleAdapter(object):
@@ -37,6 +39,7 @@ class ExampleForm(form.Form):
     fields['tel'].widgetFactory = TelFieldWidget
     fields['month'].widgetFactory = MonthFieldWidget
     fields['number'].widgetFactory = NumberFieldWidget
+    fields['week'].widgetFactory = WeekFieldWidget
 
     @button.buttonAndHandler(u'Ok')
     def handle_ok(self, action):

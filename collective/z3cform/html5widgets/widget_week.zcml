@@ -1,0 +1,40 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
+    i18n_domain="collective.z3cform.html5widgets">
+
+    <class class=".widget_week.WeekWidget">
+        <require permission="zope.Public"
+                 interface=".widget_week.IWeekWidget" />
+    </class>
+
+    <!-- use by default -->
+    <class class="zope.schema._field.Date">
+        <implements interface=".widget_week.IWeekField"/>
+    </class>
+    <adapter
+        factory=".widget_week.WeekFieldWidget"
+        for=".widget_week.IWeekField
+             z3c.form.interfaces.IFormLayer" />
+    <!-- Week widget -->
+    <z3c:widgetTemplate
+        mode="display"
+        widget=".widget_week.IWeekWidget"
+        layer="z3c.form.interfaces.IFormLayer"
+        template="templates/display.pt" />
+    <z3c:widgetTemplate
+        mode="input"
+        widget=".widget_week.IWeekWidget"
+        layer="z3c.form.interfaces.IFormLayer"
+        template="templates/week_input.pt" />
+    <z3c:widgetTemplate
+        mode="hidden"
+        widget=".widget_week.IWeekWidget"
+        layer="z3c.form.interfaces.IFormLayer"
+        template="templates/hidden.pt" />
+    <adapter
+        factory=".widget_week.Converter"
+        for="zope.schema.interfaces.IDate
+             .widget_week.IWeekWidget" />
+
+</configure>
