@@ -3,11 +3,16 @@ from zope import schema
 from zope import interface
 from z3c.form import form, button, field
 from plone.z3cform import layout
+from collective.z3cform.html5widgets.widget_tel import TelFieldWidget
 
 
 class ExampleSchema(interface.Interface):
-    created = schema.Date(title=u"Date (created)")
-    modified = schema.Datetime(title=u"Date time (modified)")
+    date = schema.Date(title=u"Date (created)", required=False)
+    datetime = schema.Datetime(title=u"Date time (modified)", required=False)
+    datetime_local = schema.Datetime(title=u"Date time local (modified)", required=False)
+    time = schema.Time(title=u"Time", required=False)
+    tel = schema.ASCIILine(title=u"Telephone", required=False)
+    #required = schema.ASCIILine(title=u"", required=True)
 
 
 class ExampleAdapter(object):
@@ -16,27 +21,16 @@ class ExampleAdapter(object):
 
     def __init__(self, context):
         self.context = context
-
-    def get_created(self):
-        return self.context.created().asdatetime()
-
-    def set_created(self, value):
-        self.context.setCreationDate(value)
-
-    created = property(get_created, set_created)
-
-    def get_modified(self):
-        return None  # self.context.modified().asdatetime()
-
-    def set_modified(self, value):
-        self.context.setModificationDate(value)
-
-    modified = property(get_modified, set_modified)
+        self.date = None
+        self.datetime = None
+        self.datetime_local = None
+        self.tel = None
 
 
 class ExampleForm(form.Form):
     """example"""
     fields = field.Fields(ExampleSchema)
+    fields['tel'].widgetFactory = TelFieldWidget
 
     @button.buttonAndHandler(u'Ok')
     def handle_ok(self, action):

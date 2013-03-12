@@ -27,6 +27,7 @@
                        readonly view/readonly;
                        alt view/alt;
                        accesskey view/accesskey;
-                       onselect view/onselect;" />
+                       onselect view/onselect;
+                       required view/required_attr" />
 
 </tal:root>

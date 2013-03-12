@@ -8,29 +8,26 @@ import z3c.form.browser.widget
 import z3c.form.widget
 #from zope.i18n.format import DateTimeLocalParseError
 from zope.schema.fieldproperty import FieldProperty
-from z3c.form.converter import BaseDataConverter
+from collective.z3cform.html5widgets.widget_datetime import DateTimeConverter
+from collective.z3cform.html5widgets import attributes
 
 
-#rfc 3339
-#full-date       = date-fullyear "-" date-month "-" date-mday
-# returned values
-# IE9: display input type text
-# Opera: Supported -> 2012-01-26-T13:37:01.00Z
-# Safari: Supported -> 2012-01-26-T13:37Z
-# IPhone: Supported -> 2012-01-26-T13:37:01Z
-# Chrome: input type text
-# Chrome mobile (android): supported
-# Firefox: display input type text.
-# Firefox mobile (android): display input type text with numeric keyboard
-# Androidi browser (3.1+): input type text
-
-FORMAT = '%Y-%m-%d-T%H:%MZ'
-
-
-class IDateTimeLocalWidget(z3c.form.interfaces.IWidget):
-    """ Date widget marker for z3c.form """
-    min = schema.Date(title=u"Min", required=False)
-    max = schema.Date(title=u"Max", required=False)
+class IDateTimeLocalWidget(attributes.IMinMaxWidget,
+                           attributes.IRequiredWidget):
+    """ Date widget marker for z3c.form
+    #rfc 3339
+    #full-date       = date-fullyear "-" date-month "-" date-mday
+    supported:
+    # IE9: display input type text
+    # Opera: Supported -> 2012-01-26-T13:37:01.00Z
+    # Safari: Supported -> 2012-01-26-T13:37Z
+    # IPhone: Supported -> 2012-01-26-T13:37:01Z
+    # Chrome: input type text
+    # Chrome mobile (android): supported
+    # Firefox: display input type text.
+    # Firefox mobile (android): display input type text with numeric keyboard
+    # Androidi browser (3.1+): input type text
+    """
 
 
 class IDateTimeLocalField(schema.interfaces.IDatetime):
@@ -62,6 +59,7 @@ class DateTimeLocalWidget(z3c.form.browser.widget.HTMLTextInputWidget,
     klass = u'html5-datetime-widget'
     min = FieldProperty(IDateTimeLocalWidget['min'])
     max = FieldProperty(IDateTimeLocalWidget['max'])
+    required_attr = FieldProperty(IDateTimeLocalWidget['required_attr'])
 
     def update(self):
         super(DateTimeLocalWidget, self).update()
@@ -79,18 +77,6 @@ class DateTimeLocalValidationError(schema.ValidationError, ValueError):
     __doc__ = u'Please enter a valid datetime.'
 
 
-class Converter(BaseDataConverter):
-
-    def toWidgetValue(self, value):
-        if value is self.field.missing_value:
-            return ''
-        return value.strftime(FORMAT)
-
-    def toFieldValue(self, value):
-        if not value:
-            return self.field.missing_value
-
-        try:
-            return datetime.strptime(value, FORMAT)
-        except ValueError:
-            raise DateTimeLocalValidationError
+class DateTimeLocalConverter(DateTimeConverter):
+    def raise_error(self):
+        raise DateTimeLocalValidationError

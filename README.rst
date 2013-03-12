@@ -4,11 +4,13 @@ Introduction
 This addon provide the following HTML5 widgets:
 
 * date
+* datetime
+* datetime-local
+
 
 TODO: add the following widgets
 
 * time
-* datetime
 * month
 * week
 * email

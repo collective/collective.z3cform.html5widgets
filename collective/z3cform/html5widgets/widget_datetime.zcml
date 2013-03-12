@@ -33,7 +33,7 @@
         layer="z3c.form.interfaces.IFormLayer"
         template="templates/hidden.pt" />
     <adapter
-        factory=".widget_datetime.Converter"
+        factory=".widget_datetime.DateTimeConverter"
         for="zope.schema.interfaces.IDatetime
              .widget_datetime.IDateTimeWidget" />
 

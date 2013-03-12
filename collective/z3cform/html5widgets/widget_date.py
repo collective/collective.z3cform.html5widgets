@@ -10,17 +10,17 @@ import z3c.form.widget
 from zope.schema.fieldproperty import FieldProperty
 from z3c.form.converter import BaseDataConverter
 
+from collective.z3cform.html5widgets import attributes
 
 #rfc 3339
 #full-date       = date-fullyear "-" date-month "-" date-mday
 FORMAT = '%Y-%m-%d'
 
 
-class IDateWidget(z3c.form.interfaces.IWidget):
-    """ Date widget marker for z3c.form """
-    step = schema.Int(title=u"Step", required=False)
-    min = schema.Date(title=u"Min", required=False)
-    max = schema.Date(title=u"Max", required=False)
+class IDateWidget(attributes.IStepWidget,
+                  attributes.IMinMaxWidget,
+                  attributes.IRequiredWidget):
+    """Date widget marker for z3c.form """
 
 
 class IDateField(schema.interfaces.IDate):
@@ -54,6 +54,7 @@ class DateWidget(z3c.form.browser.widget.HTMLTextInputWidget,
     step = FieldProperty(IDateWidget['step'])
     min = FieldProperty(IDateWidget['min'])
     max = FieldProperty(IDateWidget['max'])
+    required_attr = FieldProperty(IDateWidget['required_attr'])
 
     def update(self):
         super(DateWidget, self).update()

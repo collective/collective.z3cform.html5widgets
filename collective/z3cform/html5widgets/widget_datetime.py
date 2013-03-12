@@ -10,6 +10,7 @@ import z3c.form.widget
 from zope.schema.fieldproperty import FieldProperty
 from z3c.form.converter import BaseDataConverter
 
+from collective.z3cform.html5widgets import attributes
 
 #rfc 3339
 #full-date       = date-fullyear "-" date-month "-" date-mday
@@ -27,10 +28,9 @@ from z3c.form.converter import BaseDataConverter
 FORMAT = '%Y-%m-%d-T%H:%MZ'
 
 
-class IDateTimeWidget(z3c.form.interfaces.IWidget):
+class IDateTimeWidget(attributes.IMinMaxWidget,
+                      attributes.IRequiredWidget):
     """ Date widget marker for z3c.form """
-    min = schema.Date(title=u"Min", required=False)
-    max = schema.Date(title=u"Max", required=False)
 
 
 class IDateTimeField(schema.interfaces.IDatetime):
@@ -62,6 +62,7 @@ class DateTimeWidget(z3c.form.browser.widget.HTMLTextInputWidget,
     klass = u'html5-datetime-widget'
     min = FieldProperty(IDateTimeWidget['min'])
     max = FieldProperty(IDateTimeWidget['max'])
+    required_attr = FieldProperty(IDateTimeWidget['required_attr'])
 
     def update(self):
         super(DateTimeWidget, self).update()
@@ -79,18 +80,41 @@ class DateTimeValidationError(schema.ValidationError, ValueError):
     __doc__ = u'Please enter a valid datetime.'
 
 
-class Converter(BaseDataConverter):
+class DateTimeConverter(BaseDataConverter):
 
     def toWidgetValue(self, value):
         if value is self.field.missing_value:
             return ''
-        return value.strftime(FORMAT)
+        return value.strftime('%Y-%m-%d-T%H:%MZ')
 
     def toFieldValue(self, value):
         if not value:
             return self.field.missing_value
-
+        value_length = len(value)
+        if value_length == 17:
+            #2012-01-26-T13:37
+            pattern = '%Y-%m-%d-T%H:%M'
+        elif value_length == 18:
+            #2012-01-26-T13:37Z
+            pattern = '%Y-%m-%d-T%H:%MZ'
+        elif value_length == 20:
+            #2012-01-26-T13:37:01
+            pattern = '%Y-%m-%d-T%H:%M:%S'
+        elif value_length == 21:
+            #2012-01-26-T13:37:01Z
+            pattern = '%Y-%m-%d-T%H:%M:%SZ'
+        elif len(value) == 23:
+            #2012-01-26-T13:37:01.00
+            pattern = '%Y-%m-%d-T%H:%M:%S.00'
+        elif len(value) == 24:
+            #2012-01-26-T13:37:01.00Z
+            pattern = '%Y-%m-%d-T%H:%M:%S.00Z'
+        else:
+            raise self.raise_error()
         try:
-            return datetime.strptime(value, FORMAT)
+            return datetime.strptime(value, pattern)
         except ValueError:
-            raise DateTimeValidationError
+            self.raise_error()
+
+    def raise_error(self):
+        raise DateTimeValidationError

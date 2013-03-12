@@ -1,7 +1,7 @@
 <tal:root>
 
-<input type="time" id="" name="" class="" title="" lang="" disabled=""
-       readonly="" alt="" tabindex="" accesskey="" size="2" maxlength="2"
+<input type="tel" id="" name="" class="" title="" lang="" disabled=""
+       readonly="" alt="" tabindex="" accesskey="" size="10" maxlength="10"
        tal:attributes="id string:${view/id}-day;
                        name string:${view/name};
                        class view/klass;
@@ -27,6 +27,8 @@
                        readonly view/readonly;
                        alt view/alt;
                        accesskey view/accesskey;
-                       onselect view/onselect;" />
+                       onselect view/onselect;
+                       pattern view/pattern;
+                       required view/required_attr" />
 
 </tal:root>
