@@ -67,9 +67,6 @@ class WeekValidationError(schema.ValidationError, ValueError):
     __doc__ = u'Please enter a valid date.'
 
 
-FORMAT = 
-
-
 class Converter(BaseDataConverter):
 
     def tofirstdayinisoweek(self, year, week):

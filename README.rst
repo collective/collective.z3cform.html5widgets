@@ -10,11 +10,11 @@ This addon provide the following HTML5 widgets:
 * number
 * tel
 * time
+* week
 
 
 TODO: add the following widgets
 
-* week
 * email
 * range
 * password
