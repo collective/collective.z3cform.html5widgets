@@ -1,4 +1,5 @@
 #-*- coding: utf-8 -*-
+from datetime import datetime
 
 from zope import schema
 from zope import interface
@@ -73,13 +74,12 @@ class Converter(BaseDataConverter):
     def toWidgetValue(self, value):
         if value is self.field.missing_value:
             return ''
-        return value
+        return value.strftime('%H:%M')
 
     def toFieldValue(self, value):
         if not value:
             return self.field.missing_value
-        import pdb;pdb.set_trace()
         try:
-            return value
+            return datetime.strptime(value, '%H:%M').time()
         except ValueError:
             raise TimeValidationError
