@@ -9,6 +9,7 @@ from collective.z3cform.html5widgets.widget_number import NumberFieldWidget
 from collective.z3cform.html5widgets.widget_week import WeekFieldWidget
 from collective.z3cform.html5widgets.widget_email import EmailFieldWidget
 from collective.z3cform.html5widgets.widget_range import RangeFieldWidget
+from collective.z3cform.html5widgets.widget_search import SearchFieldWidget
 
 
 class ExampleSchema(interface.Interface):
@@ -20,6 +21,7 @@ class ExampleSchema(interface.Interface):
     number = schema.Int(title=u"Number", required=False)
     password = schema.Password(title=u"Password", required=False)
     range = schema.Int(title=u"Range", required=False)
+    search = schema.TextLine(title=u"Search", required=False)
     tel = schema.ASCIILine(title=u"Telephone", required=False)
     time = schema.Time(title=u"Time", required=False)
     url = schema.URI(title=u"URL", required=False)
@@ -48,6 +50,7 @@ class ExampleForm(form.Form):
     fields['week'].widgetFactory = WeekFieldWidget
     fields['email'].widgetFactory = EmailFieldWidget
     fields['range'].widgetFactory = RangeFieldWidget
+    fields['search'].widgetFactory = SearchFieldWidget
 
     @button.buttonAndHandler(u'Ok')
     def handle_ok(self, action):

@@ -11,6 +11,7 @@ This addon provide the following HTML5 widgets:
 * number
 * password
 * range
+* search
 * tel
 * time
 * url
@@ -19,7 +20,6 @@ This addon provide the following HTML5 widgets:
 
 TODO: add the following widgets
 
-* search
 * color
 
 
