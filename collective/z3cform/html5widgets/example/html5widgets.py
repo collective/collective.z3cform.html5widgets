@@ -20,6 +20,7 @@ class ExampleSchema(interface.Interface):
     password = schema.Password(title=u"Password", required=False)
     tel = schema.ASCIILine(title=u"Telephone", required=False)
     time = schema.Time(title=u"Time", required=False)
+    url = schema.URI(title=u"URL", required=False)
     #required = schema.ASCIILine(title=u"", required=True)
     week = schema.Date(title=u"Week", required=False)
 

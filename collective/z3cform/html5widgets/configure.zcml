@@ -26,6 +26,7 @@
     <include file="widget_password.zcml"/>
     <include file="widget_tel.zcml"/>
     <include file="widget_time.zcml"/>
+    <include file="widget_url.zcml"/>
     <include file="widget_week.zcml"/>
 
 </configure>
