@@ -10,9 +10,11 @@ from collective.z3cform.html5widgets.widget_week import WeekFieldWidget
 from collective.z3cform.html5widgets.widget_email import EmailFieldWidget
 from collective.z3cform.html5widgets.widget_range import RangeFieldWidget
 from collective.z3cform.html5widgets.widget_search import SearchFieldWidget
+from collective.z3cform.html5widgets.widget_color import ColorFieldWidget
 
 
 class ExampleSchema(interface.Interface):
+    color = schema.ASCIILine(title=u"Color", required=False)
     date = schema.Date(title=u"Date (created)", required=False)
     datetime = schema.Datetime(title=u"Date time (modified)", required=False)
     datetime_local = schema.Datetime(title=u"Date time local (modified)", required=False)
@@ -44,13 +46,14 @@ class ExampleAdapter(object):
 class ExampleForm(form.Form):
     """example"""
     fields = field.Fields(ExampleSchema)
-    fields['tel'].widgetFactory = TelFieldWidget
+    fields['color'].widgetFactory = ColorFieldWidget
+    fields['email'].widgetFactory = EmailFieldWidget
     fields['month'].widgetFactory = MonthFieldWidget
     fields['number'].widgetFactory = NumberFieldWidget
-    fields['week'].widgetFactory = WeekFieldWidget
-    fields['email'].widgetFactory = EmailFieldWidget
     fields['range'].widgetFactory = RangeFieldWidget
     fields['search'].widgetFactory = SearchFieldWidget
+    fields['tel'].widgetFactory = TelFieldWidget
+    fields['week'].widgetFactory = WeekFieldWidget
 
     @button.buttonAndHandler(u'Ok')
     def handle_ok(self, action):

@@ -3,6 +3,7 @@ Introduction
 
 This addon provide the following HTML5 widgets:
 
+* color
 * date
 * datetime
 * datetime-local
@@ -16,11 +17,6 @@ This addon provide the following HTML5 widgets:
 * time
 * url
 * week
-
-
-TODO: add the following widgets
-
-* color
 
 
 How to install

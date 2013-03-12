@@ -17,6 +17,7 @@
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
     <include file="upgrades.zcml"/>
+    <include file="widget_color.zcml"/>
     <include file="widget_date.zcml"/>
     <include file="widget_datetime.zcml"/>
     <include file="widget_datetimelocal.zcml"/>
