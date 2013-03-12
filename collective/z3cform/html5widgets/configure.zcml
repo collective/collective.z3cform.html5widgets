@@ -20,6 +20,8 @@
     <include file="widget_date.zcml"/>
     <include file="widget_datetime.zcml"/>
     <include file="widget_datetimelocal.zcml"/>
+    <include file="widget_month.zcml"/>
+    <include file="widget_number.zcml"/>
     <include file="widget_tel.zcml"/>
     <include file="widget_time.zcml"/>
 

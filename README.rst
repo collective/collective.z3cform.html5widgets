@@ -6,18 +6,19 @@ This addon provide the following HTML5 widgets:
 * date
 * datetime
 * datetime-local
+* month
+* tel
+* time
 
 
 TODO: add the following widgets
 
-* time
 * month
 * week
 * email
 * number (+step)
 * range
 * password
-* tel
 * url
 * search
 * color
