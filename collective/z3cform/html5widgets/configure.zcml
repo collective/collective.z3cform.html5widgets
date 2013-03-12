@@ -24,6 +24,7 @@
     <include file="widget_month.zcml"/>
     <include file="widget_number.zcml"/>
     <include file="widget_password.zcml"/>
+    <include file="widget_range.zcml"/>
     <include file="widget_tel.zcml"/>
     <include file="widget_time.zcml"/>
     <include file="widget_url.zcml"/>

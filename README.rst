@@ -9,16 +9,16 @@ This addon provide the following HTML5 widgets:
 * email
 * month
 * number
+* password
+* range
 * tel
 * time
+* url
 * week
 
 
 TODO: add the following widgets
 
-* range
-* password
-* url
 * search
 * color
 

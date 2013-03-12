@@ -8,6 +8,7 @@ from collective.z3cform.html5widgets.widget_month import MonthFieldWidget
 from collective.z3cform.html5widgets.widget_number import NumberFieldWidget
 from collective.z3cform.html5widgets.widget_week import WeekFieldWidget
 from collective.z3cform.html5widgets.widget_email import EmailFieldWidget
+from collective.z3cform.html5widgets.widget_range import RangeFieldWidget
 
 
 class ExampleSchema(interface.Interface):
@@ -18,6 +19,7 @@ class ExampleSchema(interface.Interface):
     month = schema.Date(title=u"Month", required=False)
     number = schema.Int(title=u"Number", required=False)
     password = schema.Password(title=u"Password", required=False)
+    range = schema.Int(title=u"Range", required=False)
     tel = schema.ASCIILine(title=u"Telephone", required=False)
     time = schema.Time(title=u"Time", required=False)
     url = schema.URI(title=u"URL", required=False)
@@ -45,6 +47,7 @@ class ExampleForm(form.Form):
     fields['number'].widgetFactory = NumberFieldWidget
     fields['week'].widgetFactory = WeekFieldWidget
     fields['email'].widgetFactory = EmailFieldWidget
+    fields['range'].widgetFactory = RangeFieldWidget
 
     @button.buttonAndHandler(u'Ok')
     def handle_ok(self, action):
