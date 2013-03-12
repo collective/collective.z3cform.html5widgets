@@ -1,13 +1,13 @@
 from zope import component
 from zope import schema
 from zope import interface
-from Products.Five import BrowserView
 from z3c.form import form, button, field
 from plone.z3cform import layout
 
 
 class ExampleSchema(interface.Interface):
-    date = schema.Date(title=u"date example")
+    created = schema.Date(title=u"Date (created)")
+    modified = schema.Datetime(title=u"Date time (modified)")
 
 
 class ExampleAdapter(object):
@@ -17,13 +17,21 @@ class ExampleAdapter(object):
     def __init__(self, context):
         self.context = context
 
-    def get_date(self):
+    def get_created(self):
         return self.context.created().asdatetime()
 
-    def set_date(self, value):
+    def set_created(self, value):
         self.context.setCreationDate(value)
 
-    date = property(get_date, set_date)
+    created = property(get_created, set_created)
+
+    def get_modified(self):
+        return None  # self.context.modified().asdatetime()
+
+    def set_modified(self, value):
+        self.context.setModificationDate(value)
+
+    modified = property(get_modified, set_modified)
 
 
 class ExampleForm(form.Form):

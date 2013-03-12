@@ -6,7 +6,7 @@ from zope import interface
 from zope import component
 import z3c.form.browser.widget
 import z3c.form.widget
-#from zope.i18n.format import DateTimeParseError
+#from zope.i18n.format import DateTimeLocalParseError
 from zope.schema.fieldproperty import FieldProperty
 from z3c.form.converter import BaseDataConverter
 
@@ -27,17 +27,17 @@ from z3c.form.converter import BaseDataConverter
 FORMAT = '%Y-%m-%d-T%H:%MZ'
 
 
-class IDateTimeWidget(z3c.form.interfaces.IWidget):
+class IDateTimeLocalWidget(z3c.form.interfaces.IWidget):
     """ Date widget marker for z3c.form """
     min = schema.Date(title=u"Min", required=False)
     max = schema.Date(title=u"Max", required=False)
 
 
-class IDateTimeField(schema.interfaces.IDatetime):
+class IDateTimeLocalField(schema.interfaces.IDatetime):
     """ Special marker for date fields that use our widget """
 
 
-class DateTimeWidget(z3c.form.browser.widget.HTMLTextInputWidget,
+class DateTimeLocalWidget(z3c.form.browser.widget.HTMLTextInputWidget,
                  z3c.form.widget.Widget):
     """HTML Datetime widget:
     attributes:
@@ -56,26 +56,26 @@ class DateTimeWidget(z3c.form.browser.widget.HTMLTextInputWidget,
     * pattern
     """
 
-    interface.implementsOnly(IDateTimeWidget)
+    interface.implementsOnly(IDateTimeLocalWidget)
 
     calendar_type = 'gregorian'
     klass = u'html5-datetime-widget'
-    min = FieldProperty(IDateTimeWidget['min'])
-    max = FieldProperty(IDateTimeWidget['max'])
+    min = FieldProperty(IDateTimeLocalWidget['min'])
+    max = FieldProperty(IDateTimeLocalWidget['max'])
 
     def update(self):
-        super(DateTimeWidget, self).update()
+        super(DateTimeLocalWidget, self).update()
         z3c.form.browser.widget.addFieldClass(self)
 
 
 @component.adapter(schema.interfaces.IField, z3c.form.interfaces.IFormLayer)
 @interface.implementer(z3c.form.interfaces.IFieldWidget)
-def DateTimeFieldWidget(field, request):
-    """IFieldWidget factory for DateTimeWidget."""
-    return z3c.form.widget.FieldWidget(field, DateTimeWidget(request))
+def DateTimeLocalFieldWidget(field, request):
+    """IFieldWidget factory for DateTimeLocalWidget."""
+    return z3c.form.widget.FieldWidget(field, DateTimeLocalWidget(request))
 
 
-class DateTimeValidationError(schema.ValidationError, ValueError):
+class DateTimeLocalValidationError(schema.ValidationError, ValueError):
     __doc__ = u'Please enter a valid datetime.'
 
 
@@ -93,4 +93,4 @@ class Converter(BaseDataConverter):
         try:
             return datetime.strptime(value, FORMAT)
         except ValueError:
-            raise DateTimeValidationError
+            raise DateTimeLocalValidationError

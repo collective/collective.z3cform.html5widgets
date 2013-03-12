@@ -8,7 +8,7 @@
                  interface=".widget_date.IDateWidget" />
     </class>
 
-    <!-- use Date by default -->
+    <!-- use by default -->
     <class class="zope.schema._field.Date">
         <implements interface=".widget_date.IDateField"/>
     </class>
