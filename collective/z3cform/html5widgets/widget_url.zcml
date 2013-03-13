@@ -10,25 +10,26 @@
 
     <adapter
         factory=".widget_url.URLFieldWidget"
+        provides="z3c.form.interfaces.IFieldWidget"
         for=".widget_url.IURLField
-             z3c.form.interfaces.IFormLayer" />
+             .layer.Layer" />
     <class class="zope.schema._field.URI">
         <implements interface=".widget_url.IURLField"/>
     </class>
     <z3c:widgetTemplate
         mode="display"
         widget=".widget_url.IURLWidget"
-        layer="z3c.form.interfaces.IFormLayer"
+        layer=".layer.Layer"
         template="templates/display.pt" />
     <z3c:widgetTemplate
         mode="input"
         widget=".widget_url.IURLWidget"
-        layer="z3c.form.interfaces.IFormLayer"
+        layer=".layer.Layer"
         template="templates/url_input.pt" />
     <z3c:widgetTemplate
         mode="hidden"
         widget=".widget_url.IURLWidget"
-        layer="z3c.form.interfaces.IFormLayer"
+        layer=".layer.Layer"
         template="templates/hidden.pt" />
     <adapter
         factory=".widget_url.Converter"

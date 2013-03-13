@@ -52,8 +52,6 @@ class NumberWidget(z3c.form.browser.widget.HTMLTextInputWidget,
         z3c.form.browser.widget.addFieldClass(self)
 
 
-@component.adapter(schema.interfaces.IField, z3c.form.interfaces.IFormLayer)
-@interface.implementer(z3c.form.interfaces.IFieldWidget)
 def NumberFieldWidget(field, request):
     """IFieldWidget factory for NumberWidget."""
     return z3c.form.widget.FieldWidget(field, NumberWidget(request))

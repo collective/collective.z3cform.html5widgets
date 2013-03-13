@@ -10,23 +10,24 @@
 
     <adapter
         factory=".widget_color.ColorFieldWidget"
+        provides="z3c.form.interfaces.IFieldWidget"
         for=".widget_color.IColorField
-             z3c.form.interfaces.IFormLayer" />
+             .layer.Layer" />
 
     <z3c:widgetTemplate
         mode="display"
         widget=".widget_color.IColorWidget"
-        layer="z3c.form.interfaces.IFormLayer"
+        layer=".layer.Layer"
         template="templates/display.pt" />
     <z3c:widgetTemplate
         mode="input"
         widget=".widget_color.IColorWidget"
-        layer="z3c.form.interfaces.IFormLayer"
+        layer=".layer.Layer"
         template="templates/color_input.pt" />
     <z3c:widgetTemplate
         mode="hidden"
         widget=".widget_color.IColorWidget"
-        layer="z3c.form.interfaces.IFormLayer"
+        layer=".layer.Layer"
         template="templates/hidden.pt" />
     <adapter
         factory=".widget_color.Converter"

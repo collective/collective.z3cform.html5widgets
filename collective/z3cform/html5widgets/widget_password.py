@@ -45,7 +45,7 @@ class PasswordWidget(z3c.form.browser.widget.HTMLTextInputWidget,
 
     interface.implementsOnly(IPasswordWidget)
 
-    klass = u'html5-tel-widget'
+    klass = u'html5-password-widget'
     pattern = FieldProperty(IPasswordWidget['pattern'])
     required_attr = FieldProperty(IPasswordWidget['required_attr'])
 
@@ -54,8 +54,6 @@ class PasswordWidget(z3c.form.browser.widget.HTMLTextInputWidget,
         z3c.form.browser.widget.addFieldClass(self)
 
 
-@component.adapter(schema.interfaces.IField, z3c.form.interfaces.IFormLayer)
-@interface.implementer(z3c.form.interfaces.IFieldWidget)
 def PasswordFieldWidget(field, request):
     """IFieldWidget factory for PasswordWidget."""
     return z3c.form.widget.FieldWidget(field, PasswordWidget(request))

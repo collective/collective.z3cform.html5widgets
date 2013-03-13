@@ -10,25 +10,26 @@
 
     <adapter
         factory=".widget_number.NumberFieldWidget"
+        provides="z3c.form.interfaces.IFieldWidget"
         for=".widget_number.INumberField
-             z3c.form.interfaces.IFormLayer" />
+             .layer.Layer" />
     <class class="zope.schema._bootstrapfields.Int">
         <implements interface=".widget_number.INumberField"/>
     </class>
     <z3c:widgetTemplate
         mode="display"
         widget=".widget_number.INumberWidget"
-        layer="z3c.form.interfaces.IFormLayer"
+        layer=".layer.Layer"
         template="templates/display.pt" />
     <z3c:widgetTemplate
         mode="input"
         widget=".widget_number.INumberWidget"
-        layer="z3c.form.interfaces.IFormLayer"
+        layer=".layer.Layer"
         template="templates/number_input.pt" />
     <z3c:widgetTemplate
         mode="hidden"
         widget=".widget_number.INumberWidget"
-        layer="z3c.form.interfaces.IFormLayer"
+        layer=".layer.Layer"
         template="templates/hidden.pt" />
     <adapter
         factory=".widget_number.Converter"

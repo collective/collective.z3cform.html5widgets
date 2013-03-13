@@ -58,8 +58,6 @@ class EmailWidget(z3c.form.browser.widget.HTMLTextInputWidget,
         z3c.form.browser.widget.addFieldClass(self)
 
 
-@component.adapter(schema.interfaces.IField, z3c.form.interfaces.IFormLayer)
-@interface.implementer(z3c.form.interfaces.IFieldWidget)
 def EmailFieldWidget(field, request):
     """IFieldWidget factory for EmailWidget."""
     return z3c.form.widget.FieldWidget(field, EmailWidget(request))

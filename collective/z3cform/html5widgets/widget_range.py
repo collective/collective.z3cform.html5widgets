@@ -55,8 +55,6 @@ class RangeWidget(z3c.form.browser.widget.HTMLTextInputWidget,
         z3c.form.browser.widget.addFieldClass(self)
 
 
-@component.adapter(schema.interfaces.IField, z3c.form.interfaces.IFormLayer)
-@interface.implementer(z3c.form.interfaces.IFieldWidget)
 def RangeFieldWidget(field, request):
     """IFieldWidget factory for RangeWidget."""
     return z3c.form.widget.FieldWidget(field, RangeWidget(request))

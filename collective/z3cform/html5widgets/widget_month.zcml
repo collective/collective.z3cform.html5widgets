@@ -10,23 +10,24 @@
 
     <adapter
         factory=".widget_month.MonthFieldWidget"
+        provides="z3c.form.interfaces.IFieldWidget"
         for=".widget_month.IMonthField
-             z3c.form.interfaces.IFormLayer" />
+             .layer.Layer" />
 
     <z3c:widgetTemplate
         mode="display"
         widget=".widget_month.IMonthWidget"
-        layer="z3c.form.interfaces.IFormLayer"
+        layer=".layer.Layer"
         template="templates/display.pt" />
     <z3c:widgetTemplate
         mode="input"
         widget=".widget_month.IMonthWidget"
-        layer="z3c.form.interfaces.IFormLayer"
+        layer=".layer.Layer"
         template="templates/month_input.pt" />
     <z3c:widgetTemplate
         mode="hidden"
         widget=".widget_month.IMonthWidget"
-        layer="z3c.form.interfaces.IFormLayer"
+        layer=".layer.Layer"
         template="templates/hidden.pt" />
     <adapter
         factory=".widget_month.Converter"

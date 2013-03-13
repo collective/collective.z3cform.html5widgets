@@ -52,8 +52,6 @@ class SearchWidget(z3c.form.browser.widget.HTMLTextInputWidget,
         z3c.form.browser.widget.addFieldClass(self)
 
 
-@component.adapter(schema.interfaces.IField, z3c.form.interfaces.IFormLayer)
-@interface.implementer(z3c.form.interfaces.IFieldWidget)
 def SearchFieldWidget(field, request):
     """IFieldWidget factory for SearchWidget."""
     return z3c.form.widget.FieldWidget(field, SearchWidget(request))
