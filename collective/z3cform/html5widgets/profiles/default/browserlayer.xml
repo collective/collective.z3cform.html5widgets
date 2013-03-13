@@ -1,6 +1,4 @@
 <layers>
-<!-- uncomment to activate
     <layer name="collective.z3cform.html5widgets"
-           interface="collective.z3cform.html5widgets.interfaces.ILayer" />
--->
+           interface="collective.z3cform.html5widgets.layer.Layer" />
 </layers>

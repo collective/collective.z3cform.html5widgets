@@ -1,5 +1,4 @@
-from zope import interface
+from plone.app.z3cform.interfaces import IPloneFormLayer
 
-
-class ILayer(interface.Interface):
+class Layer(IPloneFormLayer):
     """Browser Layer"""

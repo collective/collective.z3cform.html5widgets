@@ -9,28 +9,29 @@
     </class>
 
     <!-- use by default -->
+
     <class class="zope.schema._field.Date">
         <implements interface=".widget_date.IDateField"/>
     </class>
     <adapter
         factory=".widget_date.DateFieldWidget"
         for=".widget_date.IDateField
-             z3c.form.interfaces.IFormLayer" />
+             .layer.Layer" />
     <!-- Date widget -->
     <z3c:widgetTemplate
         mode="display"
         widget=".widget_date.IDateWidget"
-        layer="z3c.form.interfaces.IFormLayer"
+        layer=".layer.Layer"
         template="templates/display.pt" />
     <z3c:widgetTemplate
         mode="input"
         widget=".widget_date.IDateWidget"
-        layer="z3c.form.interfaces.IFormLayer"
+        layer=".layer.Layer"
         template="templates/date_input.pt" />
     <z3c:widgetTemplate
         mode="hidden"
         widget=".widget_date.IDateWidget"
-        layer="z3c.form.interfaces.IFormLayer"
+        layer=".layer.Layer"
         template="templates/hidden.pt" />
     <adapter
         factory=".widget_date.Converter"

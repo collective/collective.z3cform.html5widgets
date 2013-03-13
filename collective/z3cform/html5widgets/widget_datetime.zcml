@@ -15,22 +15,22 @@
     <adapter
         factory=".widget_datetime.DateTimeFieldWidget"
         for=".widget_datetime.IDateTimeField
-             z3c.form.interfaces.IFormLayer" />
+             .layer.Layer" />
     <!-- Date widget -->
     <z3c:widgetTemplate
         mode="display"
         widget=".widget_datetime.IDateTimeWidget"
-        layer="z3c.form.interfaces.IFormLayer"
+        layer=".layer.Layer"
         template="templates/display.pt" />
     <z3c:widgetTemplate
         mode="input"
         widget=".widget_datetime.IDateTimeWidget"
-        layer="z3c.form.interfaces.IFormLayer"
+        layer=".layer.Layer"
         template="templates/datetime_input.pt" />
     <z3c:widgetTemplate
         mode="hidden"
         widget=".widget_datetime.IDateTimeWidget"
-        layer="z3c.form.interfaces.IFormLayer"
+        layer=".layer.Layer"
         template="templates/hidden.pt" />
     <adapter
         factory=".widget_datetime.DateTimeConverter"

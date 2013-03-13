@@ -8,29 +8,28 @@
                  interface=".widget_datetimelocal.IDateTimeLocalWidget" />
     </class>
 
-    <!-- use by default -->
     <class class="zope.schema._field.Datetime">
         <implements interface=".widget_datetimelocal.IDateTimeLocalField"/>
     </class>
     <adapter
         factory=".widget_datetimelocal.DateTimeLocalFieldWidget"
         for=".widget_datetimelocal.IDateTimeLocalField
-             z3c.form.interfaces.IFormLayer" />
+             .layer.Layer" />
     <!-- Date widget -->
     <z3c:widgetTemplate
         mode="display"
         widget=".widget_datetimelocal.IDateTimeLocalWidget"
-        layer="z3c.form.interfaces.IFormLayer"
+        layer=".layer.Layer"
         template="templates/display.pt" />
     <z3c:widgetTemplate
         mode="input"
         widget=".widget_datetimelocal.IDateTimeLocalWidget"
-        layer="z3c.form.interfaces.IFormLayer"
+        layer=".layer.Layer"
         template="templates/datetimelocal_input.pt" />
     <z3c:widgetTemplate
         mode="hidden"
         widget=".widget_datetimelocal.IDateTimeLocalWidget"
-        layer="z3c.form.interfaces.IFormLayer"
+        layer=".layer.Layer"
         template="templates/hidden.pt" />
     <adapter
         factory=".widget_datetimelocal.DateTimeLocalConverter"

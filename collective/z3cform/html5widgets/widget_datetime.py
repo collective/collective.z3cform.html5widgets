@@ -1,15 +1,19 @@
-#-*- coding: utf-8 -*-
-
+#python
 from datetime import datetime
+
+#zope
 from zope import schema
 from zope import interface
 from zope import component
+from zope.schema.fieldproperty import FieldProperty
 import z3c.form.browser.widget
 import z3c.form.widget
-#from zope.i18n.format import DateTimeParseError
-from zope.schema.fieldproperty import FieldProperty
 from z3c.form.converter import BaseDataConverter
 
+#plone
+import plone.app.z3cform
+
+#internal
 from collective.z3cform.html5widgets import attributes
 
 #rfc 3339
