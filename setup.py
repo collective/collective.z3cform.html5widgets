@@ -34,8 +34,7 @@ setup(name='collective.z3cform.html5widgets',
       zip_safe=False,
       install_requires=[
           'setuptools',
-          'zope.i18n',
-          'z3c.form',
+          'plone.app.z3cform',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

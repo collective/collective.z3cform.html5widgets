@@ -35,7 +35,7 @@ class IDateTimeLocalWidget(attributes.IMinMaxWidget,
     """
 
 
-class IDateTimeLocalField(schema.interfaces.IDatetime):
+class IDateTimeLocalField(plone.app.z3cform.widget.IDatetimeField):
     """ Special marker for date fields that use our widget """
 
 
@@ -60,8 +60,7 @@ class DateTimeLocalWidget(z3c.form.browser.widget.HTMLTextInputWidget,
 
     interface.implementsOnly(IDateTimeLocalWidget)
 
-    calendar_type = 'gregorian'
-    klass = u'html5-datetime-widget'
+    klass = u'html5-datetimelocal-widget'
     min = FieldProperty(IDateTimeLocalWidget['min'])
     max = FieldProperty(IDateTimeLocalWidget['max'])
     required_attr = FieldProperty(IDateTimeLocalWidget['required_attr'])
@@ -71,8 +70,6 @@ class DateTimeLocalWidget(z3c.form.browser.widget.HTMLTextInputWidget,
         z3c.form.browser.widget.addFieldClass(self)
 
 
-@component.adapter(schema.interfaces.IField, z3c.form.interfaces.IFormLayer)
-@interface.implementer(z3c.form.interfaces.IFieldWidget)
 def DateTimeLocalFieldWidget(field, request):
     """IFieldWidget factory for DateTimeLocalWidget."""
     return z3c.form.widget.FieldWidget(field, DateTimeLocalWidget(request))

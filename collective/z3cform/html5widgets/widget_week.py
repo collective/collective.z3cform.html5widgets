@@ -44,7 +44,6 @@ class WeekWidget(z3c.form.browser.widget.HTMLTextInputWidget,
 
     interface.implementsOnly(IWeekWidget)
 
-    calendar_type = 'gregorian'
     klass = u'html5-date-widget'
     step = FieldProperty(IWeekWidget['step'])
     min = FieldProperty(IWeekWidget['min'])

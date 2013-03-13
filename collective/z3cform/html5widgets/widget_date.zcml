@@ -15,6 +15,7 @@
     </class>
     <adapter
         factory=".widget_date.DateFieldWidget"
+        provides="z3c.form.interfaces.IFieldWidget"
         for=".widget_date.IDateField
              .layer.Layer" />
     <!-- Date widget -->

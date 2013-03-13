@@ -13,8 +13,10 @@
     </class>
     <adapter
         factory=".widget_datetimelocal.DateTimeLocalFieldWidget"
+        provides="z3c.form.interfaces.IFieldWidget"
         for=".widget_datetimelocal.IDateTimeLocalField
              .layer.Layer" />
+
     <!-- Date widget -->
     <z3c:widgetTemplate
         mode="display"

@@ -11,7 +11,7 @@ import z3c.form.widget
 from z3c.form.converter import BaseDataConverter
 
 #plone
-import plone.app.z3cform
+from plone.app.z3cform import widget
 
 #internal
 from collective.z3cform.html5widgets import attributes
@@ -20,18 +20,15 @@ from collective.z3cform.html5widgets import attributes
 #full-date       = date-fullyear "-" date-month "-" date-mday
 FORMAT = '%Y-%m-%d'
 
+
 class IDateWidget(attributes.IStepWidget,
                   attributes.IMinMaxWidget,
                   attributes.IRequiredWidget):
     """Date widget marker for z3c.form """
 
 
-class IDateField(plone.app.z3cform.widget.IDateField):
+class IDateField(widget.IDateField):
     pass
-
-
-class IDateField(schema.interfaces.IDate):
-    """ Special marker for date fields that use our widget """
 
 
 class DateWidget(z3c.form.browser.widget.HTMLTextInputWidget,
@@ -56,7 +53,6 @@ class DateWidget(z3c.form.browser.widget.HTMLTextInputWidget,
 
     interface.implementsOnly(IDateWidget)
 
-    calendar_type = 'gregorian'
     klass = u'html5-date-widget'
     step = FieldProperty(IDateWidget['step'])
     min = FieldProperty(IDateWidget['min'])
@@ -68,8 +64,6 @@ class DateWidget(z3c.form.browser.widget.HTMLTextInputWidget,
         z3c.form.browser.widget.addFieldClass(self)
 
 
-@component.adapter(schema.interfaces.IField, z3c.form.interfaces.IFormLayer)
-@interface.implementer(z3c.form.interfaces.IFieldWidget)
 def DateFieldWidget(field, request):
     """IFieldWidget factory for DateWidget."""
     return z3c.form.widget.FieldWidget(field, DateWidget(request))

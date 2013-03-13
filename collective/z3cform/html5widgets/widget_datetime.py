@@ -37,12 +37,12 @@ class IDateTimeWidget(attributes.IMinMaxWidget,
     """ Date widget marker for z3c.form """
 
 
-class IDateTimeField(schema.interfaces.IDatetime):
+class IDateTimeField(plone.app.z3cform.widget.IDatetimeField):
     """ Special marker for date fields that use our widget """
 
 
 class DateTimeWidget(z3c.form.browser.widget.HTMLTextInputWidget,
-                 z3c.form.widget.Widget):
+                     z3c.form.widget.Widget):
     """HTML Datetime widget:
     attributes:
     * name
@@ -62,7 +62,6 @@ class DateTimeWidget(z3c.form.browser.widget.HTMLTextInputWidget,
 
     interface.implementsOnly(IDateTimeWidget)
 
-    calendar_type = 'gregorian'
     klass = u'html5-datetime-widget'
     min = FieldProperty(IDateTimeWidget['min'])
     max = FieldProperty(IDateTimeWidget['max'])
@@ -73,8 +72,6 @@ class DateTimeWidget(z3c.form.browser.widget.HTMLTextInputWidget,
         z3c.form.browser.widget.addFieldClass(self)
 
 
-@component.adapter(schema.interfaces.IField, z3c.form.interfaces.IFormLayer)
-@interface.implementer(z3c.form.interfaces.IFieldWidget)
 def DateTimeFieldWidget(field, request):
     """IFieldWidget factory for DateTimeWidget."""
     return z3c.form.widget.FieldWidget(field, DateTimeWidget(request))
