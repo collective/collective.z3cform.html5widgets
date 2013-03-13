@@ -18,17 +18,26 @@ This addon provide the following HTML5 widgets:
 * url
 * week
 
+Status: young
+
+TODO
+====
+
+* less copy/paste where it's possible
+* add tests
+* add support of datalist
 
 How to install
 ==============
 
 This addon can be installed has any other addons. please follow official
-documentation_
+documentation_. It doesn't provide any profile, so you juste have to add it
+to your zope install.
 
 If you want to support theses widgets on incapable browser you must consider
 using polyfill.
 
-Corresponding addons:
+Some addons which provide polyfills:
 
 * collective.js.webshims
 
