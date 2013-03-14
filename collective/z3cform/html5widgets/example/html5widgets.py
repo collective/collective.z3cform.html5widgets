@@ -15,6 +15,8 @@ from collective.z3cform.html5widgets.widget_color import ColorFieldWidget
 
 class ExampleSchema(interface.Interface):
     color = schema.ASCIILine(title=u"Color", required=False)
+    contenteditable = schema.Text(title=u"Content Editable", required=False,
+                          default=u"<p>editable value</p><p>on multi line</p>")
     date = schema.Date(title=u"Date (created)", required=False)
     datetime = schema.Datetime(title=u"Date time (modified)", required=False)
     datetime_local = schema.Datetime(title=u"Date time local (modified)", required=False)

@@ -4,7 +4,7 @@ Introduction
 This addon provide the following HTML5 widgets:
 
 * color
-* contenteditable (wysiwyg)
+* contenteditable
 * datalist (autocomplete & search)
 * date
 * datetime
