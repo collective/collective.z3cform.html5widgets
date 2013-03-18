@@ -7,12 +7,10 @@ import z3c.form.browser.widget
 import z3c.form.widget
 from zope.schema.fieldproperty import FieldProperty
 from z3c.form.converter import BaseDataConverter
-from collective.z3cform.html5widgets import attributes
+from collective.z3cform.html5widgets import base
 
 
-class INumberWidget(attributes.IStepWidget,
-                    attributes.IMinMaxWidget,
-                    attributes.IRequiredWidget):
+class INumberWidget(base.IHTML5InputWidget, z3c.form.interfaces.IWidget):
     """ Number widget marker for z3c.form """
 
 
@@ -20,32 +18,13 @@ class INumberField(schema.interfaces.IASCIILine):
     """ Special marker for date fields that use our widget """
 
 
-class NumberWidget(z3c.form.browser.widget.HTMLTextInputWidget,
-                z3c.form.widget.Widget):
-    """HTML  widget:
-    attributes:
-    * name
-    * disabled
-    * form
-    * type
-    * autocomplete
-    * autofocus
-    * list
-    * min
-    * max
-    * readonly
-    * required
-    * value
-    * pattern
-    """
+class NumberWidget(base.HTML5InputWidget, z3c.form.widget.Widget):
+    """Widget"""
 
     interface.implementsOnly(INumberWidget)
 
     klass = u'html5-number-widget'
-    max = FieldProperty(INumberWidget['max'])
-    min = FieldProperty(INumberWidget['min'])
-    required_attr = FieldProperty(INumberWidget['required_attr'])
-    step = FieldProperty(INumberWidget['step'])
+    input_type = "number"
 
     def update(self):
         super(NumberWidget, self).update()

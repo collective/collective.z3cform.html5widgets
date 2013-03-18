@@ -25,7 +25,7 @@
         mode="input"
         widget=".widget_number.INumberWidget"
         layer=".layer.Layer"
-        template="templates/number_input.pt" />
+        template="templates/html5_input.pt" />
     <z3c:widgetTemplate
         mode="hidden"
         widget=".widget_number.INumberWidget"

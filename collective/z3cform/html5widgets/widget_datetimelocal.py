@@ -14,11 +14,11 @@ import plone.app.z3cform
 
 #internal
 from collective.z3cform.html5widgets.widget_datetime import DateTimeConverter
-from collective.z3cform.html5widgets import attributes
+from collective.z3cform.html5widgets import base
 
 
-class IDateTimeLocalWidget(attributes.IMinMaxWidget,
-                           attributes.IRequiredWidget):
+class IDateTimeLocalWidget(base.IHTML5InputWidget,
+                           z3c.form.interfaces.IWidget):
     """ Date widget marker for z3c.form
     #rfc 3339
     #full-date       = date-fullyear "-" date-month "-" date-mday
@@ -39,31 +39,13 @@ class IDateTimeLocalField(plone.app.z3cform.widget.IDatetimeField):
     """ Special marker for date fields that use our widget """
 
 
-class DateTimeLocalWidget(z3c.form.browser.widget.HTMLTextInputWidget,
-                 z3c.form.widget.Widget):
-    """HTML Datetime widget:
-    attributes:
-    * name
-    * disabled
-    * form
-    * type
-    * autocomplete
-    * autofocus
-    * list
-    * min
-    * max
-    * readonly
-    * required
-    * value
-    * pattern
-    """
+class DateTimeLocalWidget(base.HTML5InputWidget, z3c.form.widget.Widget):
+    """widget"""
 
     interface.implementsOnly(IDateTimeLocalWidget)
 
     klass = u'html5-datetimelocal-widget'
-    min = FieldProperty(IDateTimeLocalWidget['min'])
-    max = FieldProperty(IDateTimeLocalWidget['max'])
-    required_attr = FieldProperty(IDateTimeLocalWidget['required_attr'])
+    input_type = "datetime-local"
 
     def update(self):
         super(DateTimeLocalWidget, self).update()

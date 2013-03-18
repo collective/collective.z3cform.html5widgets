@@ -23,7 +23,7 @@
         mode="input"
         widget=".widget_color.IColorWidget"
         layer=".layer.Layer"
-        template="templates/color_input.pt" />
+        template="templates/html5_input.pt" />
     <z3c:widgetTemplate
         mode="hidden"
         widget=".widget_color.IColorWidget"

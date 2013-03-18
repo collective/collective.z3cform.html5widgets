@@ -9,14 +9,14 @@ import z3c.form.widget
 from zope.schema.fieldproperty import FieldProperty
 from z3c.form.converter import BaseDataConverter
 
-from collective.z3cform.html5widgets.widget_date import IDateWidget
+from collective.z3cform.html5widgets import base
 
 #rfc 3339
 #full-date       = date-fullyear "-" date-month "-" date-mday
 FORMAT = '%Y-%m'
 
 
-class IMonthWidget(IDateWidget):
+class IMonthWidget(base.IHTML5InputWidget, z3c.form.interfaces.IWidget):
     """Date widget marker for z3c.form """
 
 
@@ -24,33 +24,13 @@ class IMonthField(schema.interfaces.IDate):
     """ Special marker for date fields that use our widget """
 
 
-class MonthWidget(z3c.form.browser.widget.HTMLTextInputWidget,
-                 z3c.form.widget.Widget):
-    """HTML Month widget:
-    attributes:
-    * name
-    * disabled
-    * form
-    * type
-    * autocomplete
-    * autofocus
-    * list
-    * min
-    * max
-    * step (integer)
-    * readonly
-    * required
-    * value
-    * pattern
-    """
+class MonthWidget(base.HTML5InputWidget, z3c.form.widget.Widget):
+    """Widget"""
 
     interface.implementsOnly(IMonthWidget)
 
     klass = u'html5-month-widget'
-    step = FieldProperty(IMonthWidget['step'])
-    min = FieldProperty(IMonthWidget['min'])
-    max = FieldProperty(IMonthWidget['max'])
-    required_attr = FieldProperty(IMonthWidget['required_attr'])
+    input_type = "month"
 
     def update(self):
         super(MonthWidget, self).update()

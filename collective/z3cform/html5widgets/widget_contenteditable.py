@@ -2,15 +2,13 @@
 
 from zope import schema
 from zope import interface
-from zope import component
+import z3c.form.interfaces
 import z3c.form.browser.widget
 import z3c.form.widget
-from zope.schema.fieldproperty import FieldProperty
 from z3c.form.converter import BaseDataConverter
-from collective.z3cform.html5widgets import attributes
 
 
-class IContentEditableWidget(attributes.IRequiredWidget):
+class IContentEditableWidget(z3c.form.interfaces.IWidget):
     """ ContentEditable widget marker for z3c.form"""
 
 
@@ -26,7 +24,6 @@ class ContentEditableWidget(z3c.form.browser.widget.HTMLTextInputWidget,
     interface.implementsOnly(IContentEditableWidget)
 
     klass = u'html5-contenteditable-widget'
-    required_attr = FieldProperty(IContentEditableWidget['required_attr'])
 
     def update(self):
         super(ContentEditableWidget, self).update()

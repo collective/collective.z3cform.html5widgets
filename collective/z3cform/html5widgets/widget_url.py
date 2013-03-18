@@ -8,11 +8,10 @@ import z3c.form.widget
 #from zope.i18n.format import URLTimeParseError
 from zope.schema.fieldproperty import FieldProperty
 from z3c.form.converter import BaseDataConverter
-from collective.z3cform.html5widgets import attributes
+from collective.z3cform.html5widgets import base
 
 
-class IURLWidget(attributes.IPatternWidget,
-                 attributes.IRequiredWidget):
+class IURLWidget(base.IHTML5InputWidget, z3c.form.interfaces.IWidget):
     """ URL widget marker for z3c.form """
 
 
@@ -20,34 +19,13 @@ class IURLField(schema.interfaces.IURI):
     """ Special marker for date fields that use our widget """
 
 
-class URLWidget(z3c.form.browser.widget.HTMLTextInputWidget,
-                z3c.form.widget.Widget):
-    """
-    browser support:
-    * IE 10: OK
-    * IE < 10: input type text
-    
-    attributes:
-    * name
-    * disabled
-    * form
-    * type
-    * autocomplete
-    * autofocus
-    * list
-    * min
-    * max
-    * readonly
-    * required
-    * value
-    * pattern
-    """
+class URLWidget(base.HTML5InputWidget, z3c.form.widget.Widget):
+    """widget"""
 
     interface.implementsOnly(IURLWidget)
 
-    klass = u'html5-tel-widget'
-    pattern = FieldProperty(IURLWidget['pattern'])
-    required_attr = FieldProperty(IURLWidget['required_attr'])
+    klass = u'html5-url-widget'
+    input_type = "url"
 
     def update(self):
         super(URLWidget, self).update()

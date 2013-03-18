@@ -9,12 +9,10 @@ import z3c.form.widget
 #from zope.i18n.format import TimeTimeParseError
 from zope.schema.fieldproperty import FieldProperty
 from z3c.form.converter import BaseDataConverter
-from collective.z3cform.html5widgets import attributes
+from collective.z3cform.html5widgets import base
 
 
-class ITimeWidget(attributes.IStepWidget,
-                  attributes.IMinMaxWidget,
-                  attributes.IRequiredWidget):
+class ITimeWidget(base.IHTML5InputWidget, z3c.form.interfaces.IWidget):
     """ Time widget marker for z3c.form """
 
 
@@ -22,36 +20,13 @@ class ITimeField(schema.interfaces.ITime):
     """ Special marker for date fields that use our widget """
 
 
-class TimeWidget(z3c.form.browser.widget.HTMLTextInputWidget,
-                z3c.form.widget.Widget):
-    """
-    browser support:
-    * IE 10: OK
-    * IE < 10: input type text
-
-    attributes:
-    * name
-    * disabled
-    * form
-    * type
-    * autocomplete
-    * autofocus
-    * list
-    * min
-    * max
-    * readonly
-    * required
-    * value
-    * pattern
-    """
+class TimeWidget(base.HTML5InputWidget, z3c.form.widget.Widget):
+    """widget"""
 
     interface.implementsOnly(ITimeWidget)
 
     klass = u'html5-time-widget'
-    required_attr = FieldProperty(ITimeWidget['required_attr'])
-    step = FieldProperty(ITimeWidget['step'])
-    min = FieldProperty(ITimeWidget['min'])
-    max = FieldProperty(ITimeWidget['max'])
+    input_type = "time"
 
     def update(self):
         super(TimeWidget, self).update()

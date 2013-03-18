@@ -1,9 +1,8 @@
 <tal:root>
 
-<div contenteditable="true" id="" name="" class="" title="" lang="" disabled=""
-    tal:content="structure view/value"
-    alt="" tabindex="" accesskey=""
-    tal:attributes="id string:${view/id}-div;
+<input type=""
+    tal:attributes="id string:${view/id}-day;
+        type string:${view/input_type};
         name string:${view/name};
         class view/klass;
         style view/style;
@@ -19,6 +18,7 @@
         onkeypress view/onkeypress;
         onkeydown view/onkeydown;
         onkeyup view/onkeyup;
+        value view/value;
         disabled view/disabled;
         tabindex view/tabindex;
         onfocus view/onfocus;
@@ -27,16 +27,13 @@
         readonly view/readonly;
         alt view/alt;
         accesskey view/accesskey;
-        onselect view/onselect;" />
-
-<input id="" name="" value="" class="" type="hidden"
-    tal:attributes="id string:${view/id};
-        name view/name;
-        class view/klass;
-        value view/value;" />
-
-<script type="text/javascript" tal:content="string:$('#${view/id}-div').bind('input', function(event){
-  $('#${view/id}').attr('value', event.originalEvent.srcElement.innerHTML);
-});"></script>
+        onselect view/onselect;
+        required view/required_attr;
+        autocomplete view/autocomplete;
+        step view/step;
+        placeholder view/placeholder;
+        pattern view/pattern;
+        min view/min;
+        max view/max;" />
 
 </tal:root>

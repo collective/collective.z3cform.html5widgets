@@ -9,12 +9,10 @@ import z3c.form.widget
 from zope.schema.fieldproperty import FieldProperty
 from z3c.form.converter import BaseDataConverter
 
-from collective.z3cform.html5widgets import attributes
+from collective.z3cform.html5widgets import base
 
 
-class IWeekWidget(attributes.IStepWidget,
-                  attributes.IMinMaxWidget,
-                  attributes.IRequiredWidget):
+class IWeekWidget(base.IHTML5InputWidget, z3c.form.interfaces.IWidget):
     """Week widget marker for z3c.form """
 
 
@@ -22,33 +20,12 @@ class IWeekField(schema.interfaces.IDate):
     """ Special marker for date fields that use our widget """
 
 
-class WeekWidget(z3c.form.browser.widget.HTMLTextInputWidget,
-                 z3c.form.widget.Widget):
-    """HTML Week widget:
-    attributes:
-    * name
-    * disabled
-    * form
-    * type
-    * autocomplete
-    * autofocus
-    * list
-    * min
-    * max
-    * step (integer)
-    * readonly
-    * required
-    * value
-    * pattern
-    """
-
+class WeekWidget(base.HTML5InputWidget, z3c.form.widget.Widget):
+    """Widget"""
     interface.implementsOnly(IWeekWidget)
 
-    klass = u'html5-date-widget'
-    step = FieldProperty(IWeekWidget['step'])
-    min = FieldProperty(IWeekWidget['min'])
-    max = FieldProperty(IWeekWidget['max'])
-    required_attr = FieldProperty(IWeekWidget['required_attr'])
+    klass = u'html5-week-widget'
+    input_type = "week"
 
     def update(self):
         super(WeekWidget, self).update()

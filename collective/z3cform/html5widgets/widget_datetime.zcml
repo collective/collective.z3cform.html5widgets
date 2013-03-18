@@ -27,7 +27,7 @@
         mode="input"
         widget=".widget_datetime.IDateTimeWidget"
         layer=".layer.Layer"
-        template="templates/datetime_input.pt" />
+        template="templates/html5_input.pt" />
     <z3c:widgetTemplate
         mode="hidden"
         widget=".widget_datetime.IDateTimeWidget"

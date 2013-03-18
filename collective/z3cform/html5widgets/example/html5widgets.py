@@ -11,6 +11,7 @@ from collective.z3cform.html5widgets.widget_email import EmailFieldWidget
 from collective.z3cform.html5widgets.widget_range import RangeFieldWidget
 from collective.z3cform.html5widgets.widget_search import SearchFieldWidget
 from collective.z3cform.html5widgets.widget_color import ColorFieldWidget
+from collective.z3cform.html5widgets.widget_contenteditable import ContentEditableFieldWidget
 
 
 class ExampleSchema(interface.Interface):
@@ -49,6 +50,7 @@ class ExampleForm(form.Form):
     """example"""
     fields = field.Fields(ExampleSchema)
     fields['color'].widgetFactory = ColorFieldWidget
+    fields['contenteditable'].widgetFactory = ContentEditableFieldWidget
     fields['email'].widgetFactory = EmailFieldWidget
     fields['month'].widgetFactory = MonthFieldWidget
     fields['number'].widgetFactory = NumberFieldWidget

@@ -14,16 +14,14 @@ from z3c.form.converter import BaseDataConverter
 from plone.app.z3cform import widget
 
 #internal
-from collective.z3cform.html5widgets import attributes
+from collective.z3cform.html5widgets import base
 
 #rfc 3339
 #full-date       = date-fullyear "-" date-month "-" date-mday
 FORMAT = '%Y-%m-%d'
 
 
-class IDateWidget(attributes.IStepWidget,
-                  attributes.IMinMaxWidget,
-                  attributes.IRequiredWidget):
+class IDateWidget(base.IHTML5InputWidget, z3c.form.interfaces.IWidget):
     """Date widget marker for z3c.form """
 
 
@@ -31,33 +29,13 @@ class IDateField(widget.IDateField):
     pass
 
 
-class DateWidget(z3c.form.browser.widget.HTMLTextInputWidget,
-                 z3c.form.widget.Widget):
-    """HTML Date widget:
-    attributes:
-    * name
-    * disabled
-    * form
-    * type
-    * autocomplete
-    * autofocus
-    * list
-    * min
-    * max
-    * step (integer)
-    * readonly
-    * required
-    * value
-    * pattern
-    """
+class DateWidget(base.HTML5InputWidget, z3c.form.widget.Widget):
+    """widget"""
 
     interface.implementsOnly(IDateWidget)
 
     klass = u'html5-date-widget'
-    step = FieldProperty(IDateWidget['step'])
-    min = FieldProperty(IDateWidget['min'])
-    max = FieldProperty(IDateWidget['max'])
-    required_attr = FieldProperty(IDateWidget['required_attr'])
+    input_type = "date"
 
     def update(self):
         super(DateWidget, self).update()

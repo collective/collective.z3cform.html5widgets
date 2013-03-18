@@ -8,15 +8,10 @@ import z3c.form.widget
 #from zope.i18n.format import TelTimeParseError
 from zope.schema.fieldproperty import FieldProperty
 from z3c.form.converter import BaseDataConverter
-from collective.z3cform.html5widgets import attributes
+from collective.z3cform.html5widgets import base
 
 
-PATTERN = "((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?"
-PATTERN += "(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$"
-
-
-class ITelWidget(attributes.IPatternWidget,
-                 attributes.IRequiredWidget):
+class ITelWidget(base.IHTML5InputWidget, z3c.form.interfaces.IWidget):
     """ Tel widget marker for z3c.form """
 
 
@@ -24,34 +19,12 @@ class ITelField(schema.interfaces.IASCIILine):
     """ Special marker for date fields that use our widget """
 
 
-class TelWidget(z3c.form.browser.widget.HTMLTextInputWidget,
-                z3c.form.widget.Widget):
-    """
-    browser support:
-    * IE 10: OK
-    * IE < 10: input type text
-    
-    attributes:
-    * name
-    * disabled
-    * form
-    * type
-    * autocomplete
-    * autofocus
-    * list
-    * min
-    * max
-    * readonly
-    * required
-    * value
-    * pattern
-    """
-
+class TelWidget(base.HTML5InputWidget, z3c.form.widget.Widget):
+    """widget"""
     interface.implementsOnly(ITelWidget)
 
     klass = u'html5-tel-widget'
-    pattern = FieldProperty(ITelWidget['pattern'])
-    required_attr = FieldProperty(ITelWidget['required_attr'])
+    input_type = "tel"
 
     def update(self):
         super(TelWidget, self).update()

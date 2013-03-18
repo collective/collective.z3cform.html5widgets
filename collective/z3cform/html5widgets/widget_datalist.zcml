@@ -1,0 +1,11 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
+    i18n_domain="collective.z3cform.html5widgets">
+
+    <class class=".widget_datalist.DatalistSelectionWidget">
+        <require permission="zope.Public"
+                 interface=".widget_datalist.IDatalistSelectionWidget" />
+    </class>
+
+</configure>

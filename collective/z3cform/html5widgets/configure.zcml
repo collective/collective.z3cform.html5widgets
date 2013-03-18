@@ -7,6 +7,7 @@
     i18n_domain="collective.z3cform.html5widgets">
 
     <include package="z3c.form" file="meta.zcml"/>
+    <include package="plone.app.z3cform"/>
 <!--     <i18n:registerTranslations directory="locales" /> -->
 
     <genericsetup:registerProfile
@@ -19,6 +20,7 @@
     <include file="upgrades.zcml"/>
     <include file="widget_color.zcml"/>
     <include file="widget_contenteditable.zcml"/>
+    <!-- <include file="widget_datalist.zcml"/>-->
     <include file="widget_date.zcml"/>
     <include file="widget_datetime.zcml"/>
     <include file="widget_datetimelocal.zcml"/>

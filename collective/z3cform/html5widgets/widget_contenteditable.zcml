@@ -12,10 +12,7 @@
         factory=".widget_contenteditable.ContentEditableFieldWidget"
         provides="z3c.form.interfaces.IFieldWidget"
         for=".widget_contenteditable.IContentEditableField
-             z3c.form.interfaces.IFormLayer" />
-    <class class="zope.schema._bootstrapfields.Text">
-        <implements interface=".widget_contenteditable.IContentEditableField"/>
-    </class>
+             .layer.Layer" />
 
     <z3c:widgetTemplate
         mode="display"

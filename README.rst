@@ -5,7 +5,7 @@ This addon provide the following HTML5 widgets:
 
 * color
 * contenteditable
-* datalist (autocomplete & search)
+* datalist
 * date
 * datetime
 * datetime-local

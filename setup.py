@@ -35,6 +35,7 @@ setup(name='collective.z3cform.html5widgets',
       install_requires=[
           'setuptools',
           'plone.app.z3cform',
+          'plone.formwidget.autocomplete',
           # -*- Extra requirements: -*-
       ],
       entry_points="""

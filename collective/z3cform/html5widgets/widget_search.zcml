@@ -23,7 +23,7 @@
         mode="input"
         widget=".widget_search.ISearchWidget"
         layer=".layer.Layer"
-        template="templates/search_input.pt" />
+        template="templates/html5_input.pt" />
     <z3c:widgetTemplate
         mode="hidden"
         widget=".widget_search.ISearchWidget"

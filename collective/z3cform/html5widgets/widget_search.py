@@ -7,14 +7,12 @@ import z3c.form.browser.widget
 import z3c.form.widget
 from zope.schema.fieldproperty import FieldProperty
 from z3c.form.converter import BaseDataConverter
-from collective.z3cform.html5widgets import attributes
+from collective.z3cform.html5widgets import base
 
 
-class ISearchWidget(attributes.IRequiredWidget,
-                    attributes.IPlaceholder):
+class ISearchWidget(base.IHTML5InputWidget, z3c.form.interfaces.IWidget):
     """ Search widget marker for z3c.form
     http://www.w3.org/TR/html-markup/input.search.html
-
     """
 
 
@@ -22,30 +20,13 @@ class ISearchField(schema.interfaces.ITextLine):
     """ Special marker for date fields that use our widget """
 
 
-class SearchWidget(z3c.form.browser.widget.HTMLTextInputWidget,
-                z3c.form.widget.Widget):
-    """HTML  widget:
-    attributes:
-    * name
-    * disabled
-    * form
-    * type
-    * autocomplete
-    * autofocus
-    * list
-    * min
-    * max
-    * readonly
-    * required
-    * value
-    * pattern
-    """
+class SearchWidget(base.HTML5InputWidget, z3c.form.widget.Widget):
+    """widget"""
 
     interface.implementsOnly(ISearchWidget)
 
-    klass = u'html5-number-widget'
-    required_attr = FieldProperty(ISearchWidget['required_attr'])
-    placeholder = FieldProperty(ISearchWidget['placeholder'])
+    klass = u'html5-search-widget'
+    input_type = "search"
 
     def update(self):
         super(SearchWidget, self).update()

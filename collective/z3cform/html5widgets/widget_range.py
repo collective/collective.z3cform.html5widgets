@@ -7,12 +7,10 @@ import z3c.form.browser.widget
 import z3c.form.widget
 from zope.schema.fieldproperty import FieldProperty
 from z3c.form.converter import BaseDataConverter
-from collective.z3cform.html5widgets import attributes
+from collective.z3cform.html5widgets import base
 
 
-class IRangeWidget(attributes.IStepWidget,
-                   attributes.IMinMaxWidget,
-                   attributes.IRequiredWidget):
+class IRangeWidget(base.IHTML5InputWidget, z3c.form.interfaces.IWidget):
     """ Range widget marker for z3c.form
     http://www.w3.org/TR/html-markup/input.range.html
 
@@ -23,32 +21,13 @@ class IRangeField(schema.interfaces.IASCIILine):
     """ Special marker for date fields that use our widget """
 
 
-class RangeWidget(z3c.form.browser.widget.HTMLTextInputWidget,
-                z3c.form.widget.Widget):
-    """HTML  widget:
-    attributes:
-    * name
-    * disabled
-    * form
-    * type
-    * autocomplete
-    * autofocus
-    * list
-    * min
-    * max
-    * readonly
-    * required
-    * value
-    * pattern
-    """
+class RangeWidget(base.HTML5InputWidget, z3c.form.widget.Widget):
+    """Widget"""
 
     interface.implementsOnly(IRangeWidget)
 
     klass = u'html5-number-widget'
-    max = FieldProperty(IRangeWidget['max'])
-    min = FieldProperty(IRangeWidget['min'])
-    required_attr = FieldProperty(IRangeWidget['required_attr'])
-    step = FieldProperty(IRangeWidget['step'])
+    input_type = "range"
 
     def update(self):
         super(RangeWidget, self).update()

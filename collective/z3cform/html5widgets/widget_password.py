@@ -8,11 +8,10 @@ import z3c.form.widget
 #from zope.i18n.format import PasswordTimeParseError
 from zope.schema.fieldproperty import FieldProperty
 from z3c.form.converter import BaseDataConverter
-from collective.z3cform.html5widgets import attributes
+from collective.z3cform.html5widgets import base
 
 
-class IPasswordWidget(attributes.IPatternWidget,
-                 attributes.IRequiredWidget):
+class IPasswordWidget(base.IHTML5InputWidget, z3c.form.interfaces.IWidget):
     """ Password widget marker for z3c.form """
 
 
@@ -20,34 +19,13 @@ class IPasswordField(schema.interfaces.IPassword):
     """ Special marker for date fields that use our widget """
 
 
-class PasswordWidget(z3c.form.browser.widget.HTMLTextInputWidget,
-                z3c.form.widget.Widget):
-    """
-    browser support:
-    * IE 10: OK
-    * IE < 10: input type text
-    
-    attributes:
-    * name
-    * disabled
-    * form
-    * type
-    * autocomplete
-    * autofocus
-    * list
-    * min
-    * max
-    * readonly
-    * required
-    * value
-    * pattern
-    """
+class PasswordWidget(base.HTML5InputWidget, z3c.form.widget.Widget):
+    """Widget"""
 
     interface.implementsOnly(IPasswordWidget)
 
     klass = u'html5-password-widget'
-    pattern = FieldProperty(IPasswordWidget['pattern'])
-    required_attr = FieldProperty(IPasswordWidget['required_attr'])
+    input_type = "password"
 
     def update(self):
         super(PasswordWidget, self).update()

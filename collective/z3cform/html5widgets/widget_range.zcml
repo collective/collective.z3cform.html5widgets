@@ -23,7 +23,7 @@
         mode="input"
         widget=".widget_range.IRangeWidget"
         layer=".layer.Layer"
-        template="templates/range_input.pt" />
+        template="templates/html5_input.pt" />
     <z3c:widgetTemplate
         mode="hidden"
         widget=".widget_range.IRangeWidget"
