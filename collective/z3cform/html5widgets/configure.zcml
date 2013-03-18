@@ -35,4 +35,11 @@
     <include file="widget_url.zcml"/>
     <include file="widget_week.zcml"/>
 
+    <browser:page
+        for="*"
+        name="contenteditable_wysiwyg_support"
+        template="wysiwyg.pt"
+        permission="zope.Public"
+        />
+
 </configure>

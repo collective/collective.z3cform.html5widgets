@@ -26,7 +26,7 @@
         mode="input"
         widget=".widget_time.ITimeWidget"
         layer=".layer.Layer"
-        template="templates/time_input.pt" />
+        template="templates/html5_input.pt" />
     <z3c:widgetTemplate
         mode="hidden"
         widget=".widget_time.ITimeWidget"
