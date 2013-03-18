@@ -17,7 +17,7 @@
 
   <div contenteditable="true"
        name="description"
-            tal:content="inputvalue"
+            tal:content="structure inputvalue"
             tal:attributes="name string:${inputname}-div;
                             id string:${element_id}-div;
                             class python:wysiwyg and 'contenteditable' or None"></div>
