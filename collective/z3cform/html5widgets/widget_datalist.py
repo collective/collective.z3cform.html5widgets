@@ -12,33 +12,29 @@ from z3c.form.converter import BaseDataConverter
 
 #plone
 from plone.app.z3cform import widget
-
-#internal
-from collective.z3cform.html5widgets import attributes
 from plone.formwidget.autocomplete.widget import AutocompleteSelectionWidget
 from plone.formwidget.autocomplete.interfaces import IAutocompleteWidget
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
+#internal
+from collective.z3cform.html5widgets import base
 
-class IDatalistSelectionWidget(attributes.IRequiredWidget, IAutocompleteWidget):
+
+class IDatalistSelectionWidget(base.IHTML5InputWidget, IAutocompleteWidget,
+                               z3c.form.interfaces.IWidget):
     """Datalist widget marker for z3c.form """
 
 
-class DatalistSelectionWidget(AutocompleteSelectionWidget):
+class DatalistSelectionWidget(AutocompleteSelectionWidget, z3c.form.widget.Widget):
     """HTML Datalist widget:"""
-    input_template = ViewPageTemplateFile('templates/datalist_input.pt')
 
     interface.implementsOnly(IDatalistSelectionWidget)
 
-    klass = u'html5-date-widget'
-    required_attr = FieldProperty(IDatalistSelectionWidget['required_attr'])
-    js_callback_template = """\
+    klass = u'html5-datalist-widget'
+    js_template = """\
     (function($) {
         $().ready(function() {
-            $('#%(id)s-input-fields').data('klass','%(klass)s').data('title','%(title)s').data('input_type','%(input_type)s');
-            $('#%(id)s-buttons-search').remove();
-
-            %(js_extra)s
+            console.log('autocomplete ready ?');
         });
     })(jQuery);
     """
@@ -46,7 +42,6 @@ class DatalistSelectionWidget(AutocompleteSelectionWidget):
     def update(self):
         super(DatalistSelectionWidget, self).update()
         z3c.form.browser.widget.addFieldClass(self)
-
 
 
 @interface.implementer(z3c.form.interfaces.IFieldWidget)

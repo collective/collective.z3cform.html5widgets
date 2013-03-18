@@ -14,6 +14,52 @@ from collective.z3cform.html5widgets.widget_color import ColorFieldWidget
 from collective.z3cform.html5widgets.widget_contenteditable import ContentEditableFieldWidget
 
 
+from collective.z3cform.html5widgets.widget_datalist import DatalistSelectionFieldWidget
+from z3c.formwidget.query.interfaces import IQuerySource
+from Products.CMFCore.utils import getToolByName
+from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
+from zope.schema.interfaces import IContextSourceBinder
+
+
+class KeywordSource(object):
+    interface.implements(IQuerySource)
+
+    def __init__(self, context):
+        self.context = context
+        catalog = getToolByName(context, 'portal_catalog')
+        self.keywords = catalog.uniqueValuesFor('Subject')
+        terms = []
+        for x in self.keywords:
+            terms.append(SimpleTerm(x, x, unicode(x)))
+        self.vocab = SimpleVocabulary(terms)
+
+    def __contains__(self, term):
+        return self.vocab.__contains__(term)
+
+    def __iter__(self):
+        return self.vocab.__iter__()
+
+    def __len__(self):
+        return self.vocab.__len__()
+
+    def getTerm(self, value):
+        return self.vocab.getTerm(value)
+
+    def getTermByToken(self, value):
+        return self.vocab.getTermByToken(value)
+
+    def search(self, query_string):
+        q = query_string.lower()
+        return [self.getTerm(kw) for kw in self.keywords if q in kw.lower()]
+
+
+class KeywordSourceBinder(object):
+    interface.implements(IContextSourceBinder)
+
+    def __call__(self, context):
+        return KeywordSource(context)
+
+
 class ExampleSchema(interface.Interface):
     color = schema.ASCIILine(title=u"Color", required=False)
     contenteditable = schema.Text(title=u"Content Editable", required=False,
@@ -32,6 +78,9 @@ class ExampleSchema(interface.Interface):
     url = schema.URI(title=u"URL", required=False)
     #required = schema.ASCIILine(title=u"", required=True)
     week = schema.Date(title=u"Week", required=False)
+
+    datalist = schema.Choice(title=u"Datalist (single)",
+        source=KeywordSourceBinder(), required=False)
 
 
 class ExampleAdapter(object):
@@ -58,6 +107,7 @@ class ExampleForm(form.Form):
     fields['search'].widgetFactory = SearchFieldWidget
     fields['tel'].widgetFactory = TelFieldWidget
     fields['week'].widgetFactory = WeekFieldWidget
+    fields['datalist'].widgetFactory = DatalistSelectionFieldWidget
 
     @button.buttonAndHandler(u'Ok')
     def handle_ok(self, action):
