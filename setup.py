@@ -38,6 +38,9 @@ setup(name='collective.z3cform.html5widgets',
           'plone.formwidget.autocomplete',
           # -*- Extra requirements: -*-
       ],
+      extras_require=dict(
+          test=['zope.app.testing'],
+      ),
       entry_points="""
       # -*- Entry points: -*-
       [z3c.autoinclude.plugin]

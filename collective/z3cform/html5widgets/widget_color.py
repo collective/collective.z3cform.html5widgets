@@ -46,7 +46,7 @@ class Converter(BaseDataConverter):
 
     def toWidgetValue(self, value):
         if value is self.field.missing_value:
-            return ''
+            return None
         return value
 
     def toFieldValue(self, value):
