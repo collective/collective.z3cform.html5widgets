@@ -1,0 +1,94 @@
+=================
+Named File Widget
+=================
+
+This package contains two widgets: the NamedFileWidget will be used when
+rendering NamedFile objects from plone.namedfile. The NamedImageWidget is used
+for NamedImage objects. This includes their sub-classes NamedBlobFile and
+NamedBlobImage.
+
+Like any widget, the file widgets provide the ``IWidget`` interface:
+
+  >>> from zope.interface.verify import verifyClass
+  >>> from z3c.form import interfaces
+  >>> from collective.z3cform.html5widgets.widget_color import ColorWidget
+
+  >>> verifyClass(interfaces.IWidget, ColorWidget)
+  True
+
+There are also more specific interfaces for each widget:
+
+    >>> from collective.z3cform.html5widgets.widget_color import IColorWidget
+    >>> verifyClass(IColorWidget, ColorWidget)
+    True
+
+The widgets can be instantiated only using the request:
+
+  >>> from z3c.form.testing import TestRequest
+  >>> request = TestRequest()
+
+  >>> color_widget = ColorWidget(request)
+
+Before rendering a widget, one has to set the name and id of the widget:
+
+  >>> color_widget.id = 'widget.id.color'
+  >>> color_widget.name = 'widget.name.color'
+
+We also need to register the templates for the widgets:
+
+  >>> import zope.component
+  >>> from zope.pagetemplate.interfaces import IPageTemplate
+  >>> from z3c.form.widget import WidgetTemplateFactory
+
+  >>> def getPath(filename):
+  ...     import os.path
+  ...     import collective.z3cform.html5widgets
+  ...     return os.path.join(os.path.dirname(collective.z3cform.html5widgets.__file__), 'templates', filename)
+
+  >>> zope.component.provideAdapter(
+  ...     WidgetTemplateFactory(getPath('html5_input.pt'), 'text/html'),
+  ...     (None, None, None, None, IColorWidget),
+  ...     IPageTemplate, name=interfaces.INPUT_MODE)
+
+If we render the widget as this we get an input element in a simple wrapper.
+Later, we will show more advanced functionality when using a field-widget.
+
+  >>> color_widget.update()
+  >>> print color_widget.render()
+    <input type="color" id="widget.id.color-day"
+           class="html5-color-widget" name="widget.name.color" />
+
+We can extract simple data
+
+  >>> color_widget.request = TestRequest(form={'widget.name.color': '#ffffff'})
+  >>> color_widget.update()
+  >>> color_widget.extract()
+  '#ffffff'
+
+If nothing is found in the request, the default is returned:
+
+  >>> color_widget.request = TestRequest()
+  >>> color_widget.update()
+  >>> color_widget.extract()
+  <NO_VALUE>
+
+If a valide value is send, it is returned
+
+  >>> color_widget.request = TestRequest(form={'widget.name.color': '#000000'})
+  >>> color_widget.update()
+  >>> color_widget.extract()
+  '#000000'
+
+The rendering is unchanged.
+
+  >>> print color_widget.render()
+  <input type="color" id="widget.id.color-day"
+      class="html5-color-widget" name="widget.name.color"
+      value="#000000" />
+
+Empty is treated as having no value:
+
+  >>> color_widget.request = TestRequest(form={'widget.name.color': ''})
+  >>> color_widget.update()
+  >>> color_widget.extract()
+  <NO_VALUE>
