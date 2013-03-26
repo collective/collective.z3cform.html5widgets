@@ -12,13 +12,16 @@ from collective.z3cform.html5widgets.widget_range import RangeFieldWidget
 from collective.z3cform.html5widgets.widget_search import SearchFieldWidget
 from collective.z3cform.html5widgets.widget_color import ColorFieldWidget
 from collective.z3cform.html5widgets.widget_contenteditable import ContentEditableFieldWidget
+from plone.formwidget.contenttree import MultiContentTreeFieldWidget
 
-
-from collective.z3cform.html5widgets.widget_datalist import DatalistSelectionFieldWidget
+#from collective.z3cform.html5widgets.widget_datalist import DatalistMultiSelectionFieldWidget
 from z3c.formwidget.query.interfaces import IQuerySource
 from Products.CMFCore.utils import getToolByName
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 from zope.schema.interfaces import IContextSourceBinder
+from z3c.relationfield.interfaces import IRelationList
+from z3c.relationfield.schema import RelationList, RelationChoice
+from plone.formwidget.contenttree.source import ObjPathSourceBinder
 
 
 class KeywordSource(object):
@@ -81,6 +84,12 @@ class ExampleSchema(interface.Interface):
 
     datalist = schema.Choice(title=u"Datalist (single)",
         source=KeywordSourceBinder(), required=False)
+    relatedItems = RelationList(title=u"RelatedItems",
+        default=[],
+        value_type=RelationChoice(title=u"Related",
+                      source=ObjPathSourceBinder()),
+        required=False
+        )
 
 
 class ExampleAdapter(object):
@@ -93,6 +102,7 @@ class ExampleAdapter(object):
         self.datetime = None
         self.datetime_local = None
         self.tel = None
+        self.relatedItems = []
 
 
 class ExampleForm(form.Form):
@@ -107,7 +117,7 @@ class ExampleForm(form.Form):
     fields['search'].widgetFactory = SearchFieldWidget
     fields['tel'].widgetFactory = TelFieldWidget
     fields['week'].widgetFactory = WeekFieldWidget
-    fields['datalist'].widgetFactory = DatalistSelectionFieldWidget
+#    fields['datalist'].widgetFactory = DatalistSelectionFieldWidget
 
     @button.buttonAndHandler(u'Ok')
     def handle_ok(self, action):

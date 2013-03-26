@@ -1,36 +1,32 @@
-#python
-from datetime import datetime
-
 #zope
-from zope import schema
 from zope import interface
-from zope import component
-from zope.schema.fieldproperty import FieldProperty
-import z3c.form.browser.widget
+import z3c.form.interfaces
 import z3c.form.widget
-from z3c.form.converter import BaseDataConverter
 
 #plone
-from plone.app.z3cform import widget
-from plone.formwidget.autocomplete.widget import AutocompleteSelectionWidget
-from plone.formwidget.autocomplete.interfaces import IAutocompleteWidget
+from plone.formwidget.contenttree.interfaces import IContentTreeWidget
+from plone.formwidget.contenttree.widget import MultiContentTreeWidget
+
+
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
+from plone.app.relationfield.widget import RelationListDataManager
 
 #internal
-from collective.z3cform.html5widgets import base
 
 
-class IDatalistSelectionWidget(base.IHTML5InputWidget, IAutocompleteWidget,
-                               z3c.form.interfaces.IWidget):
+class DatalistManager(RelationListDataManager):
+    pass
+
+
+class IMultiDatalistWidget(IContentTreeWidget):
     """Datalist widget marker for z3c.form """
 
 
-class DatalistSelectionWidget(AutocompleteSelectionWidget, z3c.form.widget.Widget):
-    """HTML Datalist widget:"""
+class MultiDatalistWidget(MultiContentTreeWidget):
+    interface.implementsOnly(IMultiDatalistWidget)
+    input_template = ViewPageTemplateFile('templates/datalist_input.pt')
 
-    interface.implementsOnly(IDatalistSelectionWidget)
-
-    klass = u'html5-datalist-widget'
+    klass = u'html5-datalist-multiselection-widget'
     js_template = """\
     (function($) {
         $().ready(function() {
@@ -39,12 +35,19 @@ class DatalistSelectionWidget(AutocompleteSelectionWidget, z3c.form.widget.Widge
     })(jQuery);
     """
 
-    def update(self):
-        super(DatalistSelectionWidget, self).update()
-        z3c.form.browser.widget.addFieldClass(self)
+    def js_extra(self):
+        return ""
+
+    def render(self):
+        if self.mode == z3c.form.interfaces.DISPLAY_MODE:
+            return "display"
+        elif self.mode == z3c.form.interfaces.HIDDEN_MODE:
+            return "hidden"
+        else:
+            return self.input_template(self)
 
 
 @interface.implementer(z3c.form.interfaces.IFieldWidget)
-def DatalistSelectionFieldWidget(field, request):
+def MultiDatalistFieldWidget(field, request):
     """IFieldWidget factory for DatalistWidget."""
-    return z3c.form.widget.FieldWidget(field, DatalistSelectionWidget(request))
+    return z3c.form.widget.FieldWidget(field, MultiDatalistWidget(request))
