@@ -4,5 +4,6 @@
   <property name="available_editors" purge="False">
    <element value="contenteditable"/>
   </property>
+  <property name="default_editor" type="string">contenteditable</property>
  </object>
 </object>
