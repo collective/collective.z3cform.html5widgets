@@ -8,8 +8,17 @@
     <!--  TRY TO OVERRIDE IRelationList default from plone.app.relationfield -->
 
     <adapter factory=".widget_datalist.MultiDatalistFieldWidget"
+           provides="z3c.form.interfaces.IFieldWidget"
            for="z3c.relationfield.interfaces.IRelationList
                 .layer.Layer"
            />
-
+    <adapter
+        factory=".widget_datalist.Converter"
+        for="z3c.relationfield.interfaces.IRelationList
+             .widget_datalist.IMultiDatalistWidget" />
+    <z3c:widgetTemplate
+        mode="display"
+        widget=".widget_datalist.IMultiDatalistWidget"
+        layer=".layer.Layer"
+        template="templates/display.pt" />
 </configure>
