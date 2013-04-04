@@ -9,6 +9,9 @@ import z3c.form.widget
 from zope.schema.fieldproperty import FieldProperty
 from z3c.form.converter import BaseDataConverter
 from collective.z3cform.html5widgets import base
+from zope.i18nmessageid.message import MessageFactory
+
+_ = MessageFactory("collective.z3cform.html5widgets")
 
 
 class IEmailWidget(base.IHTML5InputWidget, z3c.form.interfaces.IWidget):
