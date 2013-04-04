@@ -106,3 +106,4 @@ class HTML5InputWidget(HTMLInputWidget):
         for attr in ATTR:
             if getattr(self, attr, None) and itype not in TYPES_MATRIX[attr]:
                 setattr(self, attr, None)  # reset
+

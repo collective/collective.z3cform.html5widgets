@@ -74,6 +74,8 @@ class ExampleSchema(interface.Interface):
     email = schema.ASCIILine(title=u"Email", required=False)
     month = schema.Date(title=u"Month", required=False)
     number = schema.Int(title=u"Number", required=False)
+    decimal = schema.Decimal(title=u"decimal", required=False)
+    float = schema.Float(title=u"float", required=False)
     password = schema.Password(title=u"Password", required=False)
     range = schema.Int(title=u"Range", required=False)
     search = schema.TextLine(title=u"Search", required=False)
@@ -83,8 +85,8 @@ class ExampleSchema(interface.Interface):
     #required = schema.ASCIILine(title=u"", required=True)
     week = schema.Date(title=u"Week", required=False)
 
-    datalist = schema.Choice(title=u"Datalist (single)",
-        source=KeywordSourceBinder(), required=False)
+#    datalist = schema.Choice(title=u"Datalist (single)",
+#        source=KeywordSourceBinder(), required=False)
 #    relatedItems = RelationList(title=u"RelatedItems",
 #        default=[],
 #        value_type=RelationChoice(title=u"Related",
@@ -92,9 +94,12 @@ class ExampleSchema(interface.Interface):
 #        required=False
 #        )
 
-    title = schema.TextLine(title=u"Required",
-                            required=True,
-                            default=u"required ?")
+    required = schema.TextLine(title=u"Required",
+                               required=True,
+                               default=u"required ?")
+
+    placeholder = schema.TextLine(title=u"placeholder",
+                                  required=False)
 
 
 class ExampleAdapter(object):
@@ -117,12 +122,16 @@ class ExampleForm(form.Form):
     fields['contenteditable'].widgetFactory = ContentEditableFieldWidget
     fields['email'].widgetFactory = EmailFieldWidget
     fields['month'].widgetFactory = MonthFieldWidget
-    fields['number'].widgetFactory = NumberFieldWidget
+    #fields['number'].widgetFactory = NumberFieldWidget
     fields['range'].widgetFactory = RangeFieldWidget
     fields['search'].widgetFactory = SearchFieldWidget
     fields['tel'].widgetFactory = TelFieldWidget
     fields['week'].widgetFactory = WeekFieldWidget
 #    fields['datalist'].widgetFactory = DatalistSelectionFieldWidget
+
+    def update(self):
+        super(ExampleForm, self).update()
+        self.widgets['placeholder'].placeholder = u"placeholder"
 
     @button.buttonAndHandler(u'Ok')
     def handle_ok(self, action):

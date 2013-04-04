@@ -38,6 +38,7 @@
     <include file="widget_time.zcml"/>
     <include file="widget_url.zcml"/>
     <include file="widget_week.zcml"/>
+    <include file="default.zcml"/>
 
     <browser:page
         zcml:condition="installed Products.Five"

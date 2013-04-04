@@ -1,0 +1,49 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:z3c="http://namespaces.zope.org/z3c"
+    i18n_domain="collective.z3cform.html5widgets">
+
+    <class class="zope.schema._field.Decimal">
+        <implements interface=".default_decimal.IDecimalField"/>
+    </class>
+    <adapter
+        factory=".default_decimal.DecimalFieldWidget"
+        provides="z3c.form.interfaces.IFieldWidget"
+        for=".default_decimal.IDecimalField
+             .layer.Layer" />
+    <adapter
+        factory=".default_decimal.DecimalDataConverter"
+        for="zope.schema.interfaces.IDecimal
+             .default_decimal.DecimalWidget" />
+
+
+
+    <class class="zope.schema._field.Int">
+        <implements interface=".default_int.IInt"/>
+    </class>
+    <adapter
+        factory=".widget_number.NumberFieldWidget"
+        provides="z3c.form.interfaces.IFieldWidget"
+        for=".default_int.IInt
+             .layer.Layer" />
+    <adapter
+        factory=".default_int.Converter"
+        for="zope.schema.interfaces.IInt
+             .widget_number.NumberWidget" />
+
+
+
+    <class class="zope.schema._field.Float">
+        <implements interface=".default_float.IFloat"/>
+    </class>
+    <adapter
+        factory=".default_decimal.DecimalFieldWidget"
+        provides="z3c.form.interfaces.IFieldWidget"
+        for=".default_float.IFloat
+             .layer.Layer" />
+    <adapter
+        factory=".default_float.Converter"
+        for="zope.schema.interfaces.IFloat
+             .default_decimal.DecimalWidget" />
+
+</configure>
