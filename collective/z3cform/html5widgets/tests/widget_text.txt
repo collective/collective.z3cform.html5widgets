@@ -46,7 +46,7 @@ We also need to register the template for at least the widget and request:
 If we render the widget we get the HTML:
 
   >>> print(widget.render())
-  <input type="text" class="html5-text-widget" />
+  <input class="html5-text-widget" type="text" />
 
 Adding some more attributes to the widget will make it display more:
 
@@ -56,8 +56,8 @@ Adding some more attributes to the widget will make it display more:
   >>> widget.style = u'color: blue'
 
   >>> print(widget.render())
-  <input id="id" style="color: blue" type="text" 
-          class="html5-text-widget" name="name" value="value" />
+  <input id="id" name="name" class="html5-text-widget"
+         style="color: blue" value="value" type="text" />
 
 
 Check DISPLAY_MODE:

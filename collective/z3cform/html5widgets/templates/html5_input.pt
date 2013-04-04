@@ -1,8 +1,9 @@
 <tal:root>
 
-<input
+<input id="" name="" class="" title="" lang="" disabled=""
+    readonly="" alt="" tabindex="" accesskey="" size="" maxlength=""
+    style="" value="" type="" 
     tal:attributes="id view/id;
-        type view/input_type;
         name view/name;
         class view/klass;
         style view/style;
@@ -19,6 +20,7 @@
         onkeydown view/onkeydown;
         onkeyup view/onkeyup;
         value view/value;
+        type view/input_type;
         disabled view/disabled;
         tabindex view/tabindex;
         onfocus view/onfocus;

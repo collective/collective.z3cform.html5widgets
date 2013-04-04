@@ -49,8 +49,8 @@ Later, we will show more advanced functionality when using a field-widget.
 
   >>> color_widget.update()
   >>> print color_widget.render()
-    <input id="widget.id.color" type="color"
-           class="html5-color-widget" name="widget.name.color" />
+    <input id="widget.id.color" name="widget.name.color"
+           class="html5-color-widget" type="color" />
 
 We can extract simple data
 
@@ -76,7 +76,7 @@ If a valide value is send, it is returned
 The rendering is unchanged.
 
   >>> print color_widget.render()
-  <input id="widget.id.color" type="color"
-      class="html5-color-widget" name="widget.name.color"
-      value="#000000" />
+  <input id="widget.id.color" name="widget.name.color"
+         class="html5-color-widget"
+         value="#000000" type="color" />
 
