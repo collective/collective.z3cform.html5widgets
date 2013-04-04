@@ -5,7 +5,6 @@ from z3c.form.browser.interfaces import IHTMLInputWidget
 from z3c.form.browser.widget import HTMLInputWidget
 from zope.schema.fieldproperty import FieldProperty
 
-
 required_vocab = SimpleVocabulary.fromValues(['required'])
 autocomplete_vocab = SimpleVocabulary.fromValues(['on', 'off'])
 # http://www.w3.org/wiki/HTML/Elements/input

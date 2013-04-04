@@ -8,6 +8,9 @@ import z3c.form.widget
 from zope.schema.fieldproperty import FieldProperty
 from z3c.form.converter import BaseDataConverter
 from collective.z3cform.html5widgets import base
+from zope.i18nmessageid.message import MessageFactory
+
+_ = MessageFactory("collective.z3cform.html5widgets")
 
 
 class INumberWidget(base.IHTML5InputWidget, z3c.form.interfaces.IWidget):
@@ -37,7 +40,7 @@ def NumberFieldWidget(field, request):
 
 
 class NumberValidationError(schema.ValidationError, ValueError):
-    __doc__ = u'Please enter a valid number.'
+    __doc__ = _(u"Please enter a valid number: 50.")
 
 
 class Converter(BaseDataConverter):

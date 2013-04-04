@@ -8,6 +8,7 @@ from zope import component
 from zope.schema.fieldproperty import FieldProperty
 import z3c.form.browser.widget
 import z3c.form.widget
+from zope.i18nmessageid.message import MessageFactory
 
 #plone
 import plone.app.z3cform
@@ -15,6 +16,8 @@ import plone.app.z3cform
 #internal
 from collective.z3cform.html5widgets.widget_datetime import DateTimeConverter
 from collective.z3cform.html5widgets import base
+
+_ = MessageFactory("collective.z3cform.html5widgets")
 
 
 class IDateTimeLocalWidget(base.IHTML5InputWidget,
@@ -58,7 +61,7 @@ def DateTimeLocalFieldWidget(field, request):
 
 
 class DateTimeLocalValidationError(schema.ValidationError, ValueError):
-    __doc__ = u'Please enter a valid datetime.'
+    __doc__ = _(u"Please enter a valid datetime local: 2012-01-26-T13:37Z.")
 
 
 class DateTimeLocalConverter(DateTimeConverter):

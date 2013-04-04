@@ -1,0 +1,85 @@
+##############################################################################
+#
+# Copyright (c) 2003-2004 Zope Foundation and Contributors.
+# All Rights Reserved.
+#
+# This software is subject to the provisions of the Zope Public License,
+# Version 2.1 (ZPL).  A copy of the ZPL should accompany this distribution.
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY AND ALL EXPRESS OR IMPLIED
+# WARRANTIES ARE DISCLAIMED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+# WARRANTIES OF TITLE, MERCHANTABILITY, AGAINST INFRINGEMENT, AND FITNESS
+# FOR A PARTICULAR PURPOSE.
+#
+##############################################################################
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"POT-Creation-Date: Thu Apr  4 11:48:28 2013\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Zope 3 Developers <zope-dev@zope.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: zope/app/locales/extract.py\n"
+
+#: collective.z3cform.html5widgets:/widget_color.py:45
+msgid "Please enter a valid color: #0590FF"
+msgstr ""
+
+#: collective.z3cform.html5widgets:/widget_contenteditable.py:42
+msgid "Please enter a valid html content"
+msgstr ""
+
+#: collective.z3cform.html5widgets:/widget_date.py:53
+msgid "Please enter a valid date: 2013-12-28."
+msgstr ""
+
+#: collective.z3cform.html5widgets:/widget_datetime.py:63
+msgid "Please enter a valid datetime: 2013-12-28-T23:59Z."
+msgstr ""
+
+#: collective.z3cform.html5widgets:/widget_datetimelocal.py:64
+msgid "Please enter a valid datetime local: 2012-01-26-T13:37Z."
+msgstr ""
+
+#: collective.z3cform.html5widgets:/widget_email.py:43
+msgid "Please enter a valid email: name@domain.com."
+msgstr ""
+
+#: collective.z3cform.html5widgets:/widget_month.py:48
+msgid "Please enter a valid month: 2013-12."
+msgstr ""
+
+#: collective.z3cform.html5widgets:/widget_number.py:43
+msgid "Please enter a valid number: 50."
+msgstr ""
+
+#: collective.z3cform.html5widgets:/widget_password.py:44
+msgid "Please enter a valid password."
+msgstr ""
+
+#: collective.z3cform.html5widgets:/widget_range.py:46
+msgid "Please enter a valid range."
+msgstr ""
+
+#: collective.z3cform.html5widgets:/widget_search.py:45
+msgid "Please enter a valid search term."
+msgstr ""
+
+#: collective.z3cform.html5widgets:/widget_tel.py:43
+msgid "Please enter a valid tel."
+msgstr ""
+
+#: collective.z3cform.html5widgets:/widget_time.py:45
+msgid "Please enter a valid time: 23:59."
+msgstr ""
+
+#: collective.z3cform.html5widgets:/widget_url.py:44
+msgid "Please enter a valid URL: http://mydomain/mypath?arg=value."
+msgstr ""
+
+#: collective.z3cform.html5widgets:/widget_week.py:42
+msgid "Please enter a valid week: 2012-W05."
+msgstr ""
+

@@ -40,7 +40,7 @@ def EmailFieldWidget(field, request):
 
 
 class EmailValidationError(schema.ValidationError, ValueError):
-    __doc__ = u'Please enter a valid date.'
+    __doc__ = _(u"Please enter a valid email: name@domain.com.")
 
 
 class Converter(BaseDataConverter):

@@ -9,6 +9,7 @@ from zope.schema.fieldproperty import FieldProperty
 import z3c.form.browser.widget
 import z3c.form.widget
 from z3c.form.converter import BaseDataConverter
+from zope.i18nmessageid.message import MessageFactory
 
 #plone
 import plone.app.z3cform
@@ -30,6 +31,7 @@ from collective.z3cform.html5widgets import base
 # Androidi browser (3.1+): input type text
 
 FORMAT = '%Y-%m-%d-T%H:%MZ'
+_ = MessageFactory("collective.z3cform.html5widgets")
 
 
 class IDateTimeWidget(base.IHTML5InputWidget, z3c.form.interfaces.IWidget):
@@ -58,7 +60,7 @@ def DateTimeFieldWidget(field, request):
 
 
 class DateTimeValidationError(schema.ValidationError, ValueError):
-    __doc__ = u'Please enter a valid datetime.'
+    __doc__ = _(u"Please enter a valid datetime: 2013-12-28-T23:59Z.")
 
 
 class DateTimeConverter(BaseDataConverter):

@@ -10,6 +10,9 @@ import z3c.form.widget
 from zope.schema.fieldproperty import FieldProperty
 from z3c.form.converter import BaseDataConverter
 from collective.z3cform.html5widgets import base
+from zope.i18nmessageid.message import MessageFactory
+
+_ = MessageFactory("collective.z3cform.html5widgets")
 
 
 class ITimeWidget(base.IHTML5InputWidget, z3c.form.interfaces.IWidget):
@@ -39,7 +42,7 @@ def TimeFieldWidget(field, request):
 
 
 class TimeValidationError(schema.ValidationError, ValueError):
-    __doc__ = u'Please enter a valid date.'
+    __doc__ = _(u"Please enter a valid time: 23:59.")
 
 
 class Converter(BaseDataConverter):

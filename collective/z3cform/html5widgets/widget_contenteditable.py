@@ -6,6 +6,9 @@ import z3c.form.interfaces
 import z3c.form.browser.widget
 import z3c.form.widget
 from z3c.form.converter import BaseDataConverter
+from zope.i18nmessageid.message import MessageFactory
+
+_ = MessageFactory("collective.z3cform.html5widgets")
 
 
 class IContentEditableWidget(z3c.form.interfaces.IWidget):
@@ -36,7 +39,7 @@ def ContentEditableFieldWidget(field, request):
 
 
 class ContentEditableValidationError(schema.ValidationError, ValueError):
-    __doc__ = u'Please enter a valid search term.'
+    __doc__ = _(u"Please enter a valid html content")
 
 
 class Converter(BaseDataConverter):

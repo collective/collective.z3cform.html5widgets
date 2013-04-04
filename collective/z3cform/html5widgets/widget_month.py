@@ -10,10 +10,12 @@ from zope.schema.fieldproperty import FieldProperty
 from z3c.form.converter import BaseDataConverter
 
 from collective.z3cform.html5widgets import base
+from zope.i18nmessageid.message import MessageFactory
 
 #rfc 3339
 #full-date       = date-fullyear "-" date-month "-" date-mday
 FORMAT = '%Y-%m'
+_ = MessageFactory("collective.z3cform.html5widgets")
 
 
 class IMonthWidget(base.IHTML5InputWidget, z3c.form.interfaces.IWidget):
@@ -43,7 +45,7 @@ def MonthFieldWidget(field, request):
 
 
 class MonthValidationError(schema.ValidationError, ValueError):
-    __doc__ = u'Please enter a valid month.'
+    __doc__ = _(u"Please enter a valid month: 2013-12.")
 
 
 class Converter(BaseDataConverter):

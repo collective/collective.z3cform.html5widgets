@@ -3,13 +3,14 @@
 from datetime import datetime, timedelta, date
 from zope import schema
 from zope import interface
-from zope import component
+from zope.i18nmessageid.message import MessageFactory
 import z3c.form.browser.widget
 import z3c.form.widget
-from zope.schema.fieldproperty import FieldProperty
 from z3c.form.converter import BaseDataConverter
 
 from collective.z3cform.html5widgets import base
+
+_ = MessageFactory("collective.z3cform.html5widgets")
 
 
 class IWeekWidget(base.IHTML5InputWidget, z3c.form.interfaces.IWidget):
@@ -38,7 +39,7 @@ def WeekFieldWidget(field, request):
 
 
 class WeekValidationError(schema.ValidationError, ValueError):
-    __doc__ = u'Please enter a valid date.'
+    __doc__ = _(u"Please enter a valid week: 2012-W05.")
 
 
 class Converter(BaseDataConverter):

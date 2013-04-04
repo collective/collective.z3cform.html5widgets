@@ -9,6 +9,7 @@ from zope.schema.fieldproperty import FieldProperty
 import z3c.form.browser.widget
 import z3c.form.widget
 from z3c.form.converter import BaseDataConverter
+from zope.i18nmessageid.message import MessageFactory
 
 #plone
 from plone.app.z3cform import widget
@@ -19,6 +20,7 @@ from collective.z3cform.html5widgets import base
 #rfc 3339
 #full-date       = date-fullyear "-" date-month "-" date-mday
 FORMAT = '%Y-%m-%d'
+_ = MessageFactory("collective.z3cform.html5widgets")
 
 
 class IDateWidget(base.IHTML5InputWidget, z3c.form.interfaces.IWidget):
@@ -48,7 +50,7 @@ def DateFieldWidget(field, request):
 
 
 class DateValidationError(schema.ValidationError, ValueError):
-    __doc__ = u'Please enter a valid date.'
+    __doc__ = _(u"Please enter a valid date: 2013-12-28.")
 
 
 class Converter(BaseDataConverter):
