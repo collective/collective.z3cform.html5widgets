@@ -19,60 +19,60 @@ msgstr ""
 
 #: collective.z3cform.html5widgets:/widget_color.py:45
 msgid "Please enter a valid color: #0590FF"
-msgstr ""
+msgstr "Veuillez saisir une couleur valide : #0590FF"
 
 #: collective.z3cform.html5widgets:/widget_contenteditable.py:42
 msgid "Please enter a valid html content"
-msgstr ""
+msgstr "Veuillez saisir du contenu html valide."
 
 #: collective.z3cform.html5widgets:/widget_date.py:53
 msgid "Please enter a valid date: 2013-12-28."
-msgstr ""
+msgstr "Veuillez saisir une date valide : 2013-12-28"
 
 #: collective.z3cform.html5widgets:/widget_datetime.py:63
 msgid "Please enter a valid datetime: 2013-12-28-T23:59Z."
-msgstr ""
+msgstr "Veuillez saisir une date valide : 2013-12-28-T23:59Z."
 
 #: collective.z3cform.html5widgets:/widget_datetimelocal.py:64
 msgid "Please enter a valid datetime local: 2012-01-26-T13:37Z."
-msgstr ""
+msgstr "Veuillez saisir une date valide : 2012-01-26-T13:37Z."
 
 #: collective.z3cform.html5widgets:/widget_email.py:43
 msgid "Please enter a valid email: name@domain.com."
-msgstr ""
+msgstr "Veuillez saisir une adresse email valide : nom@domaine.com"
 
 #: collective.z3cform.html5widgets:/widget_month.py:48
 msgid "Please enter a valid month: 2013-12."
-msgstr ""
+msgstr "Veuillez saisir un mois valide : 2013-12"
 
 #: collective.z3cform.html5widgets:/widget_number.py:43
 msgid "Please enter a valid number: 50."
-msgstr ""
+msgstr "Veuillez saisir un nombre valide : 50"
 
 #: collective.z3cform.html5widgets:/widget_password.py:44
 msgid "Please enter a valid password."
-msgstr ""
+msgstr "Veuillez saisir un mot de passe valide."
 
 #: collective.z3cform.html5widgets:/widget_range.py:46
 msgid "Please enter a valid range."
-msgstr ""
+msgstr "Veuillez saisir une value de l'interval valide."
 
 #: collective.z3cform.html5widgets:/widget_search.py:45
 msgid "Please enter a valid search term."
-msgstr ""
+msgstr "Veuillez saisir un terme de recherche valide."
 
 #: collective.z3cform.html5widgets:/widget_tel.py:43
 msgid "Please enter a valid tel."
-msgstr ""
+msgstr "Veuillez saisir une numéro de téléphone valide."
 
 #: collective.z3cform.html5widgets:/widget_time.py:45
 msgid "Please enter a valid time: 23:59."
-msgstr ""
+msgstr "Veuillez saisir une heure valide : 23:59."
 
 #: collective.z3cform.html5widgets:/widget_url.py:44
 msgid "Please enter a valid URL: http://mydomain/mypath?arg=value."
-msgstr ""
+msgstr "Veuillez saisir une URL valide : http://mydomain/mypath?arg=value."
 
 #: collective.z3cform.html5widgets:/widget_week.py:42
 msgid "Please enter a valid week: 2012-W05."
-msgstr ""
+msgstr "Veuillez saisir une semaine valide : 2012-W05."
