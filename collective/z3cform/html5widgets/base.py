@@ -1,8 +1,8 @@
 import zope.interface
 from zope import schema
 from zope.schema.vocabulary import SimpleVocabulary
-from z3c.form.browser.interfaces import IHTMLInputWidget
-from z3c.form.browser.widget import HTMLInputWidget
+from z3c.form.browser.interfaces import IHTMLInputWidget, IHTMLTextInputWidget
+from z3c.form.browser.widget import HTMLInputWidget, HTMLTextInputWidget
 from zope.schema.fieldproperty import FieldProperty
 
 required_vocab = SimpleVocabulary.fromValues(['required'])
@@ -39,25 +39,27 @@ TYPES_MATRIX = {
         'text', 'search', 'url', 'tel', 'email', 'password',
         'datepickers', 'range', 'color'
     ],
-    'step': ['number', 'range', 'date', 'datetime', 'datetime-local', 'month',
-        'time', 'week'
-    ],
-    'placeholder': ['text', 'search', 'url', 'tel', 'email', 'password'],
-    'required_attr': ['text', 'search', 'password', 'url', 'tel', 'email',
-        'date', 'datetime', 'datetime-local', 'month', 'week', 'time',
-        'number', 'checkbox', 'radio', 'file'
-    ],
-    'pattern': ['text', 'search', 'url', 'tel', 'email', 'password'],
     'min': ['number', 'range', 'date', 'datetime', 'datetime-local', 'month',
         'time', 'week'
     ],
     'max': ['number', 'range', 'date', 'datetime', 'datetime-local', 'month',
         'time', 'week'
     ],
+    'maxlength': ['text', 'url', 'tel', 'email', 'password'],
+    'pattern': ['text', 'search', 'url', 'tel', 'email', 'password'],
+    'placeholder': ['text', 'search', 'url', 'tel', 'email', 'password'],
+    'required_attr': ['text', 'search', 'password', 'url', 'tel', 'email',
+        'date', 'datetime', 'datetime-local', 'month', 'week', 'time',
+        'number', 'checkbox', 'radio', 'file'
+    ],
+    'size': ['text', 'search', 'tel', 'url', 'email', 'password'],
+    'step': ['number', 'range', 'date', 'datetime', 'datetime-local', 'month',
+        'time', 'week'
+    ],
 }
 
 
-class IHTML5InputWidget(IHTMLInputWidget):
+class IHTML5InputWidget(IHTMLTextInputWidget):
     """
     * min max: input type number, date, range
     """
@@ -82,7 +84,7 @@ class IHTML5InputWidget(IHTMLInputWidget):
 
 
 @zope.interface.implementer(IHTML5InputWidget)
-class HTML5InputWidget(HTMLInputWidget):
+class HTML5InputWidget(HTMLTextInputWidget):
 
     autocomplete = FieldProperty(IHTML5InputWidget['autocomplete'])
     min = FieldProperty(IHTML5InputWidget['min'])
@@ -106,4 +108,3 @@ class HTML5InputWidget(HTMLInputWidget):
         for attr in ATTR:
             if getattr(self, attr, None) and itype not in TYPES_MATRIX[attr]:
                 setattr(self, attr, None)  # reset
-

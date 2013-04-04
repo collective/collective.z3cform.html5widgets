@@ -11,7 +11,7 @@ from zope.i18nmessageid.message import MessageFactory
 _ = MessageFactory("collective.z3cform.html5widgets")
 
 
-class ITextLineWidget(base.IHTML5InputWidget, z3c.form.interfaces.IWidget):
+class ITextWidget(base.IHTML5InputWidget, z3c.form.interfaces.IWidget):
     """ Text widget marker for z3c.form"""
 
 
@@ -19,25 +19,25 @@ class ITextLineField(schema.interfaces.ITextLine):
     """ Special marker for date fields that use our widget """
 
 
-class TextLineWidget(base.HTML5InputWidget, z3c.form.widget.Widget):
+class TextWidget(base.HTML5InputWidget, z3c.form.widget.Widget):
     """widget"""
 
-    interface.implementsOnly(ITextLineWidget)
+    interface.implementsOnly(ITextWidget)
 
     klass = u'html5-text-widget'
     input_type = "text"
 
     def update(self):
-        super(TextLineWidget, self).update()
+        super(TextWidget, self).update()
         z3c.form.browser.widget.addFieldClass(self)
 
 
-def TextLineFieldWidget(field, request):
+def TextFieldWidget(field, request):
     """IFieldWidget factory for SearchWidget."""
-    return z3c.form.widget.FieldWidget(field, TextLineWidget(request))
+    return z3c.form.widget.FieldWidget(field, TextWidget(request))
 
 
-class TextLineValidationError(schema.ValidationError, ValueError):
+class TextValidationError(schema.ValidationError, ValueError):
     __doc__ = _(u"Please enter a valid text line.")
 
 
@@ -54,4 +54,4 @@ class Converter(BaseDataConverter):
         try:
             return value
         except ValueError:
-            raise TextLineValidationError
+            raise TextValidationError

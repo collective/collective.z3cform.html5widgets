@@ -1,0 +1,86 @@
+==========
+TextWidget
+==========
+
+The widget can render a input field for a text line:
+
+  >>> from zope.interface.verify import verifyClass
+  >>> from z3c.form import interfaces
+  >>> from collective.z3cform.html5widgets import widget_text as text
+
+The TextWidget is a widget:
+
+ >>> verifyClass(interfaces.IWidget, text.TextWidget)
+  True
+
+The widget can render a input field only by adapting a request:
+
+  >>> from z3c.form.testing import TestRequest
+  >>> request = TestRequest()
+  >>> widget = text.TextWidget(request)
+
+Such a field provides IWidget:
+
+ >>> interfaces.IWidget.providedBy(widget)
+  True
+
+We also need to register the template for at least the widget and request:
+
+  >>> import os.path
+  >>> import zope.interface
+  >>> from collective.z3cform.html5widgets.layer import Layer
+  >>> from zope.pagetemplate.interfaces import IPageTemplate
+  >>> import z3c.form.browser
+  >>> import z3c.form.widget
+  >>> import zope.component
+  >>> from z3c.form.widget import WidgetTemplateFactory
+  >>> def getPath(filename):
+  ...     import os.path
+  ...     import collective.z3cform.html5widgets
+  ...     return os.path.join(os.path.dirname(collective.z3cform.html5widgets.__file__), 'templates', filename)
+  >>> zope.component.provideAdapter(
+  ...     WidgetTemplateFactory(getPath('html5_input.pt'), 'text/html'),
+  ...     (None, None, None, None, text.ITextWidget),
+  ...     IPageTemplate, name=interfaces.INPUT_MODE)
+
+If we render the widget we get the HTML:
+
+  >>> print(widget.render())
+  <input type="text" class="html5-text-widget" />
+
+Adding some more attributes to the widget will make it display more:
+
+  >>> widget.id = 'id'
+  >>> widget.name = 'name'
+  >>> widget.value = u'value'
+  >>> widget.style = u'color: blue'
+
+  >>> print(widget.render())
+  <input id="id" style="color: blue" type="text" 
+          class="html5-text-widget" name="name" value="value" />
+
+
+Check DISPLAY_MODE:
+
+  >>> factory = z3c.form.widget.WidgetTemplateFactory(getPath('display.pt'), 'text/html')
+  >>> zope.component.provideAdapter(factory,
+  ...     (None, None, None, None, text.ITextWidget),
+  ...     IPageTemplate, name=interfaces.DISPLAY_MODE)
+
+  >>> widget.value = u'foobar'
+  >>> widget.style = None
+  >>> widget.mode = interfaces.DISPLAY_MODE
+  >>> print(widget.render())
+  <span id="id" class="html5-text-widget">foobar</span>
+
+Check HIDDEN_MODE:
+
+  >>> factory = z3c.form.widget.WidgetTemplateFactory(getPath('hidden.pt'))
+  >>> zope.component.provideAdapter(factory,
+  ...     (None, None, None, None, text.ITextWidget),
+  ...     IPageTemplate, name=interfaces.HIDDEN_MODE)
+
+  >>> widget.value = u'foobar'
+  >>> widget.mode = interfaces.HIDDEN_MODE
+  >>> print(widget.render())
+  <input type="hidden" class="hidden-widget" name="name" value="foobar" id="id" />

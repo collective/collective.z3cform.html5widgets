@@ -1,13 +1,8 @@
-=================
-Named File Widget
-=================
+============
+Color Widget
+============
 
-This package contains two widgets: the NamedFileWidget will be used when
-rendering NamedFile objects from plone.namedfile. The NamedImageWidget is used
-for NamedImage objects. This includes their sub-classes NamedBlobFile and
-NamedBlobImage.
-
-Like any widget, the file widgets provide the ``IWidget`` interface:
+Like any widget, the color widgets provide the ``IWidget`` interface:
 
   >>> from zope.interface.verify import verifyClass
   >>> from z3c.form import interfaces
@@ -16,7 +11,7 @@ Like any widget, the file widgets provide the ``IWidget`` interface:
   >>> verifyClass(interfaces.IWidget, ColorWidget)
   True
 
-There are also more specific interfaces for each widget:
+There are also more specific interfaces for this widget:
 
     >>> from collective.z3cform.html5widgets.widget_color import IColorWidget
     >>> verifyClass(IColorWidget, ColorWidget)
@@ -26,7 +21,6 @@ The widgets can be instantiated only using the request:
 
   >>> from z3c.form.testing import TestRequest
   >>> request = TestRequest()
-
   >>> color_widget = ColorWidget(request)
 
 Before rendering a widget, one has to set the name and id of the widget:
@@ -55,7 +49,7 @@ Later, we will show more advanced functionality when using a field-widget.
 
   >>> color_widget.update()
   >>> print color_widget.render()
-    <input type="color" id="widget.id.color-day"
+    <input id="widget.id.color" type="color"
            class="html5-color-widget" name="widget.name.color" />
 
 We can extract simple data
@@ -82,13 +76,7 @@ If a valide value is send, it is returned
 The rendering is unchanged.
 
   >>> print color_widget.render()
-  <input type="color" id="widget.id.color-day"
+  <input id="widget.id.color" type="color"
       class="html5-color-widget" name="widget.name.color"
       value="#000000" />
 
-Empty is treated as having no value:
-
-  >>> color_widget.request = TestRequest(form={'widget.name.color': ''})
-  >>> color_widget.update()
-  >>> color_widget.extract()
-  <NO_VALUE>

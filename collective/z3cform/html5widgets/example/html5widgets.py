@@ -18,7 +18,6 @@ from z3c.formwidget.query.interfaces import IQuerySource
 from Products.CMFCore.utils import getToolByName
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
 from zope.schema.interfaces import IContextSourceBinder
-from collective.z3cform.html5widgets.widget_text import TextLineFieldWidget
 #from z3c.relationfield.interfaces import IRelationList
 #from z3c.relationfield.schema import RelationList, RelationChoice
 #from plone.formwidget.contenttree import MultiContentTreeFieldWidget
@@ -68,14 +67,14 @@ class ExampleSchema(interface.Interface):
     color = schema.ASCIILine(title=u"Color", required=False)
     contenteditable = schema.Text(title=u"Content Editable", required=False,
                           default=u"<p>editable value</p><p>on multi line</p>")
-    date = schema.Date(title=u"Date (created)", required=False)
-    datetime = schema.Datetime(title=u"Date time (modified)", required=False)
-    datetime_local = schema.Datetime(title=u"Date time local (modified)", required=False)
+    date = schema.Date(title=u"Date", required=False)
+    datetime = schema.Datetime(title=u"Datetime", required=False)
+    datetime_local = schema.Datetime(title=u"Datetime local", required=False)
     email = schema.ASCIILine(title=u"Email", required=False)
     month = schema.Date(title=u"Month", required=False)
     number = schema.Int(title=u"Number", required=False)
     decimal = schema.Decimal(title=u"decimal", required=False)
-    float = schema.Float(title=u"float", required=False)
+    float = schema.Float(title=u"Float", required=False)
     password = schema.Password(title=u"Password", required=False)
     range = schema.Int(title=u"Range", required=False)
     search = schema.TextLine(title=u"Search", required=False)
@@ -98,7 +97,7 @@ class ExampleSchema(interface.Interface):
                                required=True,
                                default=u"required ?")
 
-    placeholder = schema.TextLine(title=u"placeholder",
+    placeholder = schema.TextLine(title=u"Placeholder",
                                   required=False)
 
 

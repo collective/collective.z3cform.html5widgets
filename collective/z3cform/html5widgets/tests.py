@@ -15,10 +15,17 @@ from zope.testing.doctestunit import DocFileSuite
 
 from z3c.form import testing
 
+
 def test_suite():
-    return unittest.TestSuite((
-        DocFileSuite('tests/widget_color.txt',
-                     setUp=testing.setUp, tearDown=testing.tearDown,
-                     optionflags=doctest.NORMALIZE_WHITESPACE|doctest.ELLIPSIS,
-                     ),
-        ))
+    tests = []
+    tests.append(DocFileSuite('tests/widget_color.txt',
+                 setUp=testing.setUp, tearDown=testing.tearDown,
+                 optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS,
+                 ),
+     )
+    tests.append(DocFileSuite('tests/widget_text.txt',
+                 setUp=testing.setUp, tearDown=testing.tearDown,
+                 optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS,
+                 ),
+     )
+    return unittest.TestSuite(tests)

@@ -1,9 +1,9 @@
 <tal:root>
 
-<input type=""
-    tal:attributes="id string:${view/id}-day;
-        type string:${view/input_type};
-        name string:${view/name};
+<input
+    tal:attributes="id view/id;
+        type view/input_type;
+        name view/name;
         class view/klass;
         style view/style;
         title view/title;
@@ -28,6 +28,8 @@
         alt view/alt;
         accesskey view/accesskey;
         onselect view/onselect;
+        size view/size;
+        maxlength view/maxlength;
         required view/required_attr;
         autocomplete view/autocomplete;
         step view/step;
