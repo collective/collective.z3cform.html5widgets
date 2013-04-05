@@ -46,4 +46,19 @@
         for="zope.schema.interfaces.IFloat
              .default_decimal.DecimalWidget" />
 
+
+
+    <class class="zope.schema._field.Text">
+        <implements interface=".default_text.IText"/>
+    </class>
+    <adapter
+        factory=".widget_contenteditable.ContentEditableFieldWidget"
+        provides="z3c.form.interfaces.IFieldWidget"
+        for=".default_text.IText
+             .layer.Layer" />
+    <adapter
+        factory=".default_text.Converter"
+        for="zope.schema.interfaces.IText
+             .widget_contenteditable.IContentEditableWidget" />
+
 </configure>
