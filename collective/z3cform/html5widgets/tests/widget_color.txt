@@ -13,9 +13,9 @@ Like any widget, the color widgets provide the ``IWidget`` interface:
 
 There are also more specific interfaces for this widget:
 
-    >>> from collective.z3cform.html5widgets.widget_color import IColorWidget
-    >>> verifyClass(IColorWidget, ColorWidget)
-    True
+  >>> from collective.z3cform.html5widgets.widget_color import IColorWidget
+  >>> verifyClass(IColorWidget, ColorWidget)
+  True
 
 The widgets can be instantiated only using the request:
 

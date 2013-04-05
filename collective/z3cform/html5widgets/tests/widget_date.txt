@@ -1,0 +1,75 @@
+===========
+Date Widget
+===========
+
+Like any widget, it provides the ``IWidget`` interface:
+
+  >>> from zope.interface.verify import verifyClass
+  >>> from z3c.form import interfaces
+  >>> from collective.z3cform.html5widgets.widget_date import DateWidget
+
+  >>> verifyClass(interfaces.IWidget, DateWidget)
+  True
+
+There are also more specific interfaces for this widget:
+
+  >>> from collective.z3cform.html5widgets.widget_date import IDateWidget
+  >>> verifyClass(IDateWidget, DateWidget)
+  True
+
+The widgets can be instantiated only using the request:
+
+  >>> from z3c.form.testing import TestRequest
+  >>> request = TestRequest()
+  >>> date_widget = DateWidget(request)
+
+Before rendering a widget, one has to set the name and id of the widget:
+
+  >>> date_widget.id = 'widget.id.date'
+  >>> date_widget.name = 'widget.name.date'
+
+We also need to register the templates for the widgets:
+
+  >>> import zope.component
+  >>> from zope.pagetemplate.interfaces import IPageTemplate
+  >>> from z3c.form.widget import WidgetTemplateFactory
+
+  >>> def getPath(filename):
+  ...     import os.path
+  ...     import collective.z3cform.html5widgets
+  ...     return os.path.join(os.path.dirname(collective.z3cform.html5widgets.__file__), 'templates', filename)
+
+  >>> zope.component.provideAdapter(
+  ...     WidgetTemplateFactory(getPath('html5_input.pt'), 'text/html'),
+  ...     (None, None, None, None, IDateWidget),
+  ...     IPageTemplate, name=interfaces.INPUT_MODE)
+
+If we render the widget as this we get an input element in a simple wrapper.
+Later, we will show more advanced functionality when using a field-widget.
+
+  >>> date_widget.update()
+  >>> print date_widget.render()
+    <input id="widget.id.date" name="widget.name.date"
+           class="html5-date-widget" type="date" />
+
+We can extract simple data
+
+  >>> date_widget.request = TestRequest(form={'widget.name.date': '2013-04-05'})
+  >>> date_widget.update()
+  >>> date_widget.extract()
+  '2013-04-05'
+
+The rendering is unchanged.
+
+  >>> print date_widget.render()
+  <input id="widget.id.date" name="widget.name.date"
+         class="html5-date-widget"
+         value="2013-04-05" type="date" />
+
+If nothing is found in the request, the default is returned:
+
+  >>> date_widget.request = TestRequest()
+  >>> date_widget.update()
+  >>> date_widget.extract()
+  <NO_VALUE>
+
