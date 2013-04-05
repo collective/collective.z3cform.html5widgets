@@ -9,9 +9,9 @@ def test_suite():
     tests = []
     for test in (
         'color', 'contenteditable', 'date', 'datetime', 'datetimelocal',
-        'email', 'month', 'number', 'password', 'range',
-        'text'):
-        filename = 'tests/widget_%s.txt' % test
+        'email', 'month', 'number', 'password', 'range', 'search', 'tel',
+        'text', 'time', 'url', 'week'):
+        filename = 'widget_%s.txt' % test
         tests.append(DocFileSuite(filename,
                  setUp=testing.setUp, tearDown=testing.tearDown,
                  optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS,
