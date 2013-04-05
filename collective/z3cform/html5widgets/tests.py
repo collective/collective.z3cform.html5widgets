@@ -18,29 +18,13 @@ from z3c.form import testing
 
 def test_suite():
     tests = []
-    tests.append(DocFileSuite('tests/widget_color.txt',
+    for test in (
+        'color', 'contenteditable', 'date', 'datetime',
+        'datetimelocal', 'text'):
+        filename = 'tests/widget_%s.txt' % test
+        tests.append(DocFileSuite(filename,
                  setUp=testing.setUp, tearDown=testing.tearDown,
                  optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS,
                  ),
-     )
-    tests.append(DocFileSuite('tests/widget_contenteditable.txt',
-                 setUp=testing.setUp, tearDown=testing.tearDown,
-                 optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS,
-                 ),
-     )
-    tests.append(DocFileSuite('tests/widget_date.txt',
-                 setUp=testing.setUp, tearDown=testing.tearDown,
-                 optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS,
-                 ),
-    )
-    tests.append(DocFileSuite('tests/widget_datetime.txt',
-                 setUp=testing.setUp, tearDown=testing.tearDown,
-                 optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS,
-                 ),
-    )
-    tests.append(DocFileSuite('tests/widget_text.txt',
-                 setUp=testing.setUp, tearDown=testing.tearDown,
-                 optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS,
-                 ),
-    )
+         )
     return unittest.TestSuite(tests)
