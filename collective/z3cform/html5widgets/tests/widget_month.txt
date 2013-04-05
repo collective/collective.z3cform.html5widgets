@@ -1,0 +1,75 @@
+============
+Month Widget
+============
+
+Like any widget, it provides the ``IWidget`` interface:
+
+  >>> from zope.interface.verify import verifyClass
+  >>> from z3c.form import interfaces
+  >>> from collective.z3cform.html5widgets.widget_month import MonthWidget
+
+  >>> verifyClass(interfaces.IWidget, MonthWidget)
+  True
+
+There are also more specific interfaces for this widget:
+
+  >>> from collective.z3cform.html5widgets.widget_month import IMonthWidget
+  >>> verifyClass(IMonthWidget, MonthWidget)
+  True
+
+The widgets can be instantiated only using the request:
+
+  >>> from z3c.form.testing import TestRequest
+  >>> request = TestRequest()
+  >>> month_widget = MonthWidget(request)
+
+Before rendering a widget, one has to set the name and id of the widget:
+
+  >>> month_widget.id = 'widget.id.month'
+  >>> month_widget.name = 'widget.name.month'
+
+We also need to register the templates for the widgets:
+
+  >>> import zope.component
+  >>> from zope.pagetemplate.interfaces import IPageTemplate
+  >>> from z3c.form.widget import WidgetTemplateFactory
+
+  >>> def getPath(filename):
+  ...     import os.path
+  ...     import collective.z3cform.html5widgets
+  ...     return os.path.join(os.path.dirname(collective.z3cform.html5widgets.__file__), 'templates', filename)
+
+  >>> zope.component.provideAdapter(
+  ...     WidgetTemplateFactory(getPath('html5_input.pt'), 'text/html'),
+  ...     (None, None, None, None, IMonthWidget),
+  ...     IPageTemplate, name=interfaces.INPUT_MODE)
+
+If we render the widget as this we get an input element in a simple wrapper.
+Later, we will show more advanced functionality when using a field-widget.
+
+  >>> month_widget.update()
+  >>> print month_widget.render()
+    <input id="widget.id.month" name="widget.name.month"
+           class="html5-month-widget" type="month" />
+
+We can extract simple data
+
+  >>> month_widget.request = TestRequest(form={'widget.name.month': '2013-04'})
+  >>> month_widget.update()
+  >>> month_widget.extract()
+  '2013-04'
+
+The rendering is unchanged.
+
+  >>> print month_widget.render()
+  <input id="widget.id.month" name="widget.name.month"
+         class="html5-month-widget"
+         value="2013-04" type="month" />
+
+If nothing is found in the request, the default is returned:
+
+  >>> month_widget.request = TestRequest()
+  >>> month_widget.update()
+  >>> month_widget.extract()
+  <NO_VALUE>
+

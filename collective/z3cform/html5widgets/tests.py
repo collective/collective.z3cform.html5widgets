@@ -9,7 +9,7 @@ def test_suite():
     tests = []
     for test in (
         'color', 'contenteditable', 'date', 'datetime',
-        'datetimelocal', 'email',
+        'datetimelocal', 'email', 'month',
         'text'):
         filename = 'tests/widget_%s.txt' % test
         tests.append(DocFileSuite(filename,
