@@ -1,0 +1,75 @@
+============
+Number Widget
+============
+
+Like any widget, it provides the ``IWidget`` interface:
+
+  >>> from zope.interface.verify import verifyClass
+  >>> from z3c.form import interfaces
+  >>> from collective.z3cform.html5widgets.widget_number import NumberWidget
+
+  >>> verifyClass(interfaces.IWidget, NumberWidget)
+  True
+
+There are also more specific interfaces for this widget:
+
+  >>> from collective.z3cform.html5widgets.widget_number import INumberWidget
+  >>> verifyClass(INumberWidget, NumberWidget)
+  True
+
+The widgets can be instantiated only using the request:
+
+  >>> from z3c.form.testing import TestRequest
+  >>> request = TestRequest()
+  >>> number_widget = NumberWidget(request)
+
+Before rendering a widget, one has to set the name and id of the widget:
+
+  >>> number_widget.id = 'widget.id.number'
+  >>> number_widget.name = 'widget.name.number'
+
+We also need to register the templates for the widgets:
+
+  >>> import zope.component
+  >>> from zope.pagetemplate.interfaces import IPageTemplate
+  >>> from z3c.form.widget import WidgetTemplateFactory
+
+  >>> def getPath(filename):
+  ...     import os.path
+  ...     import collective.z3cform.html5widgets
+  ...     return os.path.join(os.path.dirname(collective.z3cform.html5widgets.__file__), 'templates', filename)
+
+  >>> zope.component.provideAdapter(
+  ...     WidgetTemplateFactory(getPath('html5_input.pt'), 'text/html'),
+  ...     (None, None, None, None, INumberWidget),
+  ...     IPageTemplate, name=interfaces.INPUT_MODE)
+
+If we render the widget as this we get an input element in a simple wrapper.
+Later, we will show more advanced functionality when using a field-widget.
+
+  >>> number_widget.update()
+  >>> print number_widget.render()
+    <input id="widget.id.number" name="widget.name.number"
+           class="html5-number-widget" type="number" />
+
+We can extract simple data
+
+  >>> number_widget.request = TestRequest(form={'widget.name.number': '2013'})
+  >>> number_widget.update()
+  >>> number_widget.extract()
+  '2013'
+
+The rendering is unchanged.
+
+  >>> print number_widget.render()
+  <input id="widget.id.number" name="widget.name.number"
+         class="html5-number-widget"
+         value="2013" type="number" />
+
+If nothing is found in the request, the default is returned:
+
+  >>> number_widget.request = TestRequest()
+  >>> number_widget.update()
+  >>> number_widget.extract()
+  <NO_VALUE>
+

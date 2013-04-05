@@ -1,0 +1,75 @@
+============
+Range Widget
+============
+
+Like any widget, it provides the ``IWidget`` interface:
+
+  >>> from zope.interface.verify import verifyClass
+  >>> from z3c.form import interfaces
+  >>> from collective.z3cform.html5widgets.widget_range import RangeWidget
+
+  >>> verifyClass(interfaces.IWidget, RangeWidget)
+  True
+
+There are also more specific interfaces for this widget:
+
+  >>> from collective.z3cform.html5widgets.widget_range import IRangeWidget
+  >>> verifyClass(IRangeWidget, RangeWidget)
+  True
+
+The widgets can be instantiated only using the request:
+
+  >>> from z3c.form.testing import TestRequest
+  >>> request = TestRequest()
+  >>> range_widget = RangeWidget(request)
+
+Before rendering a widget, one has to set the name and id of the widget:
+
+  >>> range_widget.id = 'widget.id.range'
+  >>> range_widget.name = 'widget.name.range'
+
+We also need to register the templates for the widgets:
+
+  >>> import zope.component
+  >>> from zope.pagetemplate.interfaces import IPageTemplate
+  >>> from z3c.form.widget import WidgetTemplateFactory
+
+  >>> def getPath(filename):
+  ...     import os.path
+  ...     import collective.z3cform.html5widgets
+  ...     return os.path.join(os.path.dirname(collective.z3cform.html5widgets.__file__), 'templates', filename)
+
+  >>> zope.component.provideAdapter(
+  ...     WidgetTemplateFactory(getPath('html5_input.pt'), 'text/html'),
+  ...     (None, None, None, None, IRangeWidget),
+  ...     IPageTemplate, name=interfaces.INPUT_MODE)
+
+If we render the widget as this we get an input element in a simple wrapper.
+Later, we will show more advanced functionality when using a field-widget.
+
+  >>> range_widget.update()
+  >>> print range_widget.render()
+    <input id="widget.id.range" name="widget.name.range"
+           class="html5-range-widget" type="range" />
+
+We can extract simple data
+
+  >>> range_widget.request = TestRequest(form={'widget.name.range': 'motdepasse'})
+  >>> range_widget.update()
+  >>> range_widget.extract()
+  'motdepasse'
+
+The rendering is unchanged.
+
+  >>> print range_widget.render()
+  <input id="widget.id.range" name="widget.name.range"
+         class="html5-range-widget"
+         value="motdepasse" type="range" />
+
+If nothing is found in the request, the default is returned:
+
+  >>> range_widget.request = TestRequest()
+  >>> range_widget.update()
+  >>> range_widget.extract()
+  <NO_VALUE>
+
