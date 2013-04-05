@@ -1,14 +1,3 @@
-###############################################################################
-#
-# Copyright 2006 by refline (Schweiz) AG, CH-5630 Muri
-#
-###############################################################################
-
-"""
-$Id: tests.py 86815 2008-05-17 00:53:17Z pcardune $
-"""
-__docformat__ = "reStructuredText"
-
 import doctest
 import unittest
 from zope.testing.doctestunit import DocFileSuite
@@ -20,7 +9,8 @@ def test_suite():
     tests = []
     for test in (
         'color', 'contenteditable', 'date', 'datetime',
-        'datetimelocal', 'text'):
+        'datetimelocal', 'email',
+        'text'):
         filename = 'tests/widget_%s.txt' % test
         tests.append(DocFileSuite(filename,
                  setUp=testing.setUp, tearDown=testing.tearDown,

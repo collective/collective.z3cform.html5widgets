@@ -1,0 +1,75 @@
+===========
+Email Widget
+===========
+
+Like any widget, it provides the ``IWidget`` interface:
+
+  >>> from zope.interface.verify import verifyClass
+  >>> from z3c.form import interfaces
+  >>> from collective.z3cform.html5widgets.widget_email import EmailWidget
+
+  >>> verifyClass(interfaces.IWidget, EmailWidget)
+  True
+
+There are also more specific interfaces for this widget:
+
+  >>> from collective.z3cform.html5widgets.widget_email import IEmailWidget
+  >>> verifyClass(IEmailWidget, EmailWidget)
+  True
+
+The widgets can be instantiated only using the request:
+
+  >>> from z3c.form.testing import TestRequest
+  >>> request = TestRequest()
+  >>> email_widget = EmailWidget(request)
+
+Before rendering a widget, one has to set the name and id of the widget:
+
+  >>> email_widget.id = 'widget.id.email'
+  >>> email_widget.name = 'widget.name.email'
+
+We also need to register the templates for the widgets:
+
+  >>> import zope.component
+  >>> from zope.pagetemplate.interfaces import IPageTemplate
+  >>> from z3c.form.widget import WidgetTemplateFactory
+
+  >>> def getPath(filename):
+  ...     import os.path
+  ...     import collective.z3cform.html5widgets
+  ...     return os.path.join(os.path.dirname(collective.z3cform.html5widgets.__file__), 'templates', filename)
+
+  >>> zope.component.provideAdapter(
+  ...     WidgetTemplateFactory(getPath('html5_input.pt'), 'text/html'),
+  ...     (None, None, None, None, IEmailWidget),
+  ...     IPageTemplate, name=interfaces.INPUT_MODE)
+
+If we render the widget as this we get an input element in a simple wrapper.
+Later, we will show more advanced functionality when using a field-widget.
+
+  >>> email_widget.update()
+  >>> print email_widget.render()
+    <input id="widget.id.email" name="widget.name.email"
+           class="html5-email-widget" type="email" />
+
+We can extract simple data
+
+  >>> email_widget.request = TestRequest(form={'widget.name.email': 'toutpt@gmail.com'})
+  >>> email_widget.update()
+  >>> email_widget.extract()
+  'toutpt@gmail.com'
+
+The rendering is unchanged.
+
+  >>> print email_widget.render()
+  <input id="widget.id.email" name="widget.name.email"
+         class="html5-email-widget"
+         value="toutpt@gmail.com" type="email" />
+
+If nothing is found in the request, the default is returned:
+
+  >>> email_widget.request = TestRequest()
+  >>> email_widget.update()
+  >>> email_widget.extract()
+  <NO_VALUE>
+
