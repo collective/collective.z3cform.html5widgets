@@ -1,0 +1,75 @@
+===============
+DateTime Widget
+===============
+
+Like any widget, it provides the ``IWidget`` interface:
+
+  >>> from zope.interface.verify import verifyClass
+  >>> from z3c.form import interfaces
+  >>> from collective.z3cform.html5widgets.widget_datetime import DateTimeWidget
+
+  >>> verifyClass(interfaces.IWidget, DateTimeWidget)
+  True
+
+There are also more specific interfaces for this widget:
+
+  >>> from collective.z3cform.html5widgets.widget_datetime import IDateTimeWidget
+  >>> verifyClass(IDateTimeWidget, DateTimeWidget)
+  True
+
+The widgets can be instantiated only using the request:
+
+  >>> from z3c.form.testing import TestRequest
+  >>> request = TestRequest()
+  >>> datetime_widget = DateTimeWidget(request)
+
+Before rendering a widget, one has to set the name and id of the widget:
+
+  >>> datetime_widget.id = 'widget.id.datetime'
+  >>> datetime_widget.name = 'widget.name.datetime'
+
+We also need to register the templates for the widgets:
+
+  >>> import zope.component
+  >>> from zope.pagetemplate.interfaces import IPageTemplate
+  >>> from z3c.form.widget import WidgetTemplateFactory
+
+  >>> def getPath(filename):
+  ...     import os.path
+  ...     import collective.z3cform.html5widgets
+  ...     return os.path.join(os.path.dirname(collective.z3cform.html5widgets.__file__), 'templates', filename)
+
+  >>> zope.component.provideAdapter(
+  ...     WidgetTemplateFactory(getPath('html5_input.pt'), 'text/html'),
+  ...     (None, None, None, None, IDateTimeWidget),
+  ...     IPageTemplate, name=interfaces.INPUT_MODE)
+
+If we render the widget as this we get an input element in a simple wrapper.
+Later, we will show more advanced functionality when using a field-widget.
+
+  >>> datetime_widget.update()
+  >>> print datetime_widget.render()
+    <input id="widget.id.datetime" name="widget.name.datetime"
+           class="html5-datetime-widget" type="datetime" />
+
+We can extract simple data
+
+  >>> datetime_widget.request = TestRequest(form={'widget.name.datetime': '2013-04-05T23:59'})
+  >>> datetime_widget.update()
+  >>> datetime_widget.extract()
+  '2013-04-05T23:59'
+
+The rendering is unchanged.
+
+  >>> print datetime_widget.render()
+  <input id="widget.id.datetime" name="widget.name.datetime"
+         class="html5-datetime-widget"
+         value="2013-04-05T23:59" type="datetime" />
+
+If nothing is found in the request, the default is returned:
+
+  >>> datetime_widget.request = TestRequest()
+  >>> datetime_widget.update()
+  >>> datetime_widget.extract()
+  <NO_VALUE>
+
