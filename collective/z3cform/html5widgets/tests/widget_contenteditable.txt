@@ -1,0 +1,82 @@
+=======================
+Content Editable Widget
+=======================
+
+Like any widget, it provides the ``IWidget`` interface:
+
+  >>> from zope.interface.verify import verifyClass
+  >>> from z3c.form import interfaces
+  >>> from collective.z3cform.html5widgets.widget_contenteditable import ContentEditableWidget
+
+  >>> verifyClass(interfaces.IWidget, ContentEditableWidget)
+  True
+
+There are also more specific interfaces for this widget:
+
+  >>> from collective.z3cform.html5widgets.widget_contenteditable import IContentEditableWidget
+  >>> verifyClass(IContentEditableWidget, ContentEditableWidget)
+  True
+
+The widgets can be instantiated only using the request:
+
+  >>> from z3c.form.testing import TestRequest
+  >>> request = TestRequest()
+  >>> content_editable_widget = ContentEditableWidget(request)
+
+Before rendering a widget, one has to set the name and id of the widget:
+
+  >>> content_editable_widget.id = 'widget.id.content'
+  >>> content_editable_widget.name = 'widget.name.content'
+
+We also need to register the templates for the widgets:
+
+  >>> import zope.component
+  >>> from zope.pagetemplate.interfaces import IPageTemplate
+  >>> from z3c.form.widget import WidgetTemplateFactory
+
+  >>> def getPath(filename):
+  ...     import os.path
+  ...     import collective.z3cform.html5widgets
+  ...     return os.path.join(os.path.dirname(collective.z3cform.html5widgets.__file__), 'templates', filename)
+
+  >>> zope.component.provideAdapter(
+  ...     WidgetTemplateFactory(getPath('contenteditable_input.pt'), 'text/html'),
+  ...     (None, None, None, None, IContentEditableWidget),
+  ...     IPageTemplate, name=interfaces.INPUT_MODE)
+
+If we render the widget as this we get an input element in a simple wrapper.
+Later, we will show more advanced functionality when using a field-widget.
+
+  >>> content_editable_widget.update()
+  >>> print content_editable_widget.render()
+  <div id="widget.id.content-div" name="widget.name.content"
+       class="html5-contenteditable-widget" contenteditable="true"></div>
+  <input id="widget.id.content" name="widget.name.content"
+         class="html5-contenteditable-widget" type="hidden" />
+  <script type="text/javascript">$('#widget.id.content-div').bind...
+
+We can extract simple data
+
+  >>> content_editable_widget.request = TestRequest(form={'widget.name.content': '<p>test html</p>'})
+  >>> content_editable_widget.update()
+  >>> content_editable_widget.extract()
+  '<p>test html</p>'
+
+The rendering is unchanged.
+
+  >>> print content_editable_widget.render()
+  <div id="widget.id.content-div" name="widget.name.content"
+       class="html5-contenteditable-widget" contenteditable="true"><p>test html</p></div>
+  <input id="widget.id.content" name="widget.name.content"
+         value="&lt;p&gt;test html&lt;/p&gt;"
+         class="html5-contenteditable-widget" type="hidden" />
+  <script type="text/javascript">$('#widget.id.content-div').bind...
+
+
+If nothing is found in the request, the default is returned:
+
+  >>> content_editable_widget.request = TestRequest()
+  >>> content_editable_widget.update()
+  >>> content_editable_widget.extract()
+  <NO_VALUE>
+

@@ -23,6 +23,11 @@ def test_suite():
                  optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS,
                  ),
      )
+    tests.append(DocFileSuite('tests/widget_contenteditable.txt',
+                 setUp=testing.setUp, tearDown=testing.tearDown,
+                 optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS,
+                 ),
+     )
     tests.append(DocFileSuite('tests/widget_text.txt',
                  setUp=testing.setUp, tearDown=testing.tearDown,
                  optionflags=doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS,

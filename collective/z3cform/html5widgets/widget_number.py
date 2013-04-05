@@ -1,10 +1,8 @@
 #-*- coding: utf-8 -*-
 
-from zope import schema
 from zope import interface
 import z3c.form.browser.widget
 import z3c.form.widget
-from z3c.form.converter import BaseDataConverter
 from collective.z3cform.html5widgets import base
 from zope.i18nmessageid.message import MessageFactory
 

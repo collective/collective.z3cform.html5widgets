@@ -1,8 +1,8 @@
 <tal:root>
 
-<div contenteditable="true" id="" name="" class="" title="" lang="" disabled=""
+<div id="" name="" class="" title="" lang="" disabled=""
     tal:content="structure view/value"
-    alt="" tabindex="" accesskey=""
+    alt="" tabindex="" accesskey="" contenteditable="true"
     tal:attributes="id string:${view/id}-div;
         name string:${view/name};
         class view/klass;
