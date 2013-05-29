@@ -46,5 +46,12 @@
         for="zope.schema.interfaces.IFloat
              .default_decimal.DecimalWidget" />
 
+  <z3c:widgetTemplate
+      mode="input"
+      widget="z3c.form.interfaces.ISubmitWidget"
+      layer=".layer.Layer"
+      template="templates/submit_input.pt"
+      />
+
 
 </configure>
