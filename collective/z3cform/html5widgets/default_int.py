@@ -24,6 +24,6 @@ class Converter(BaseDataConverter):
             return self.field.missing_value
 
         try:
-            return value
+            return int(value)
         except ValueError:
             raise IntValidationError
