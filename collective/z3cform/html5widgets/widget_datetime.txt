@@ -48,7 +48,7 @@ If we render the widget as this we get an input element in a simple wrapper.
 Later, we will show more advanced functionality when using a field-widget.
 
   >>> datetime_widget.update()
-  >>> print datetime_widget.render()
+  >>> print(datetime_widget.render())
     <input id="widget.id.datetime" name="widget.name.datetime"
            class="html5-datetime-widget" type="datetime" />
 
@@ -61,7 +61,7 @@ We can extract simple data
 
 The rendering is unchanged.
 
-  >>> print datetime_widget.render()
+  >>> print(datetime_widget.render())
   <input id="widget.id.datetime" name="widget.name.datetime"
          class="html5-datetime-widget"
          value="2013-04-05T23:59" type="datetime" />
@@ -72,4 +72,3 @@ If nothing is found in the request, the default is returned:
   >>> datetime_widget.update()
   >>> datetime_widget.extract()
   <NO_VALUE>
-

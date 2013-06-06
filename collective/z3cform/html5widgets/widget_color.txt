@@ -48,7 +48,7 @@ If we render the widget as this we get an input element in a simple wrapper.
 Later, we will show more advanced functionality when using a field-widget.
 
   >>> color_widget.update()
-  >>> print color_widget.render()
+  >>> print(color_widget.render())
     <input id="widget.id.color" name="widget.name.color"
            class="html5-color-widget" type="color" />
 
@@ -75,7 +75,7 @@ If a valide value is send, it is returned
 
 The rendering is unchanged.
 
-  >>> print color_widget.render()
+  >>> print(color_widget.render())
   <input id="widget.id.color" name="widget.name.color"
          class="html5-color-widget"
          value="#000000" type="color" />

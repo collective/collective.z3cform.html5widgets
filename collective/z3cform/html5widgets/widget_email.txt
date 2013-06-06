@@ -48,7 +48,7 @@ If we render the widget as this we get an input element in a simple wrapper.
 Later, we will show more advanced functionality when using a field-widget.
 
   >>> email_widget.update()
-  >>> print email_widget.render()
+  >>> print(email_widget.render())
     <input id="widget.id.email" name="widget.name.email"
            class="html5-email-widget" type="email" />
 
@@ -61,7 +61,7 @@ We can extract simple data
 
 The rendering is unchanged.
 
-  >>> print email_widget.render()
+  >>> print(email_widget.render())
   <input id="widget.id.email" name="widget.name.email"
          class="html5-email-widget"
          value="toutpt@gmail.com" type="email" />

@@ -48,7 +48,7 @@ If we render the widget as this we get an input element in a simple wrapper.
 Later, we will show more advanced functionality when using a field-widget.
 
   >>> content_editable_widget.update()
-  >>> print content_editable_widget.render()
+  >>> print(content_editable_widget.render())
   <div id="widget.id.content-div" name="widget.name.content"
        class="html5-contenteditable-widget" contenteditable="true"></div>
   <input id="widget.id.content" name="widget.name.content"
@@ -64,7 +64,7 @@ We can extract simple data
 
 The rendering is unchanged.
 
-  >>> print content_editable_widget.render()
+  >>> print(content_editable_widget.render())
   <div id="widget.id.content-div" name="widget.name.content"
        class="html5-contenteditable-widget" contenteditable="true"><p>test html</p></div>
   <input id="widget.id.content" name="widget.name.content"

@@ -1,32 +1,32 @@
-============
-Range Widget
-============
+===========
+Time Widget
+===========
 
 Like any widget, it provides the ``IWidget`` interface:
 
   >>> from zope.interface.verify import verifyClass
   >>> from z3c.form import interfaces
-  >>> from collective.z3cform.html5widgets.widget_range import RangeWidget
+  >>> from collective.z3cform.html5widgets.widget_time import TimeWidget
 
-  >>> verifyClass(interfaces.IWidget, RangeWidget)
+  >>> verifyClass(interfaces.IWidget, TimeWidget)
   True
 
 There are also more specific interfaces for this widget:
 
-  >>> from collective.z3cform.html5widgets.widget_range import IRangeWidget
-  >>> verifyClass(IRangeWidget, RangeWidget)
+  >>> from collective.z3cform.html5widgets.widget_time import ITimeWidget
+  >>> verifyClass(ITimeWidget, TimeWidget)
   True
 
 The widgets can be instantiated only using the request:
 
   >>> from z3c.form.testing import TestRequest
   >>> request = TestRequest()
-  >>> range_widget = RangeWidget(request)
+  >>> time_widget = TimeWidget(request)
 
 Before rendering a widget, one has to set the name and id of the widget:
 
-  >>> range_widget.id = 'widget.id.range'
-  >>> range_widget.name = 'widget.name.range'
+  >>> time_widget.id = 'widget.id.time'
+  >>> time_widget.name = 'widget.name.time'
 
 We also need to register the templates for the widgets:
 
@@ -41,35 +41,35 @@ We also need to register the templates for the widgets:
 
   >>> zope.component.provideAdapter(
   ...     WidgetTemplateFactory(getPath('html5_input.pt'), 'text/html'),
-  ...     (None, None, None, None, IRangeWidget),
+  ...     (None, None, None, None, ITimeWidget),
   ...     IPageTemplate, name=interfaces.INPUT_MODE)
 
 If we render the widget as this we get an input element in a simple wrapper.
 Later, we will show more advanced functionality when using a field-widget.
 
-  >>> range_widget.update()
-  >>> print range_widget.render()
-    <input id="widget.id.range" name="widget.name.range"
-           class="html5-range-widget" type="range" />
+  >>> time_widget.update()
+  >>> print(time_widget.render())
+    <input id="widget.id.time" name="widget.name.time"
+           class="html5-time-widget" type="time" />
 
 We can extract simple data
 
-  >>> range_widget.request = TestRequest(form={'widget.name.range': 'motdepasse'})
-  >>> range_widget.update()
-  >>> range_widget.extract()
+  >>> time_widget.request = TestRequest(form={'widget.name.time': 'motdepasse'})
+  >>> time_widget.update()
+  >>> time_widget.extract()
   'motdepasse'
 
 The rendering is unchanged.
 
-  >>> print range_widget.render()
-  <input id="widget.id.range" name="widget.name.range"
-         class="html5-range-widget"
-         value="motdepasse" type="range" />
+  >>> print(time_widget.render())
+  <input id="widget.id.time" name="widget.name.time"
+         class="html5-time-widget"
+         value="motdepasse" type="time" />
 
 If nothing is found in the request, the default is returned:
 
-  >>> range_widget.request = TestRequest()
-  >>> range_widget.update()
-  >>> range_widget.extract()
+  >>> time_widget.request = TestRequest()
+  >>> time_widget.update()
+  >>> time_widget.extract()
   <NO_VALUE>
 

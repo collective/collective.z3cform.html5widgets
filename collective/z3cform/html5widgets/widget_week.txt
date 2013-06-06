@@ -1,6 +1,6 @@
-============
-Range Widget
-============
+===========
+Week Widget
+===========
 
 Like any widget, it provides the ``IWidget`` interface:
 

@@ -48,7 +48,7 @@ If we render the widget as this we get an input element in a simple wrapper.
 Later, we will show more advanced functionality when using a field-widget.
 
   >>> month_widget.update()
-  >>> print month_widget.render()
+  >>> print(month_widget.render())
     <input id="widget.id.month" name="widget.name.month"
            class="html5-month-widget" type="month" />
 
@@ -61,7 +61,7 @@ We can extract simple data
 
 The rendering is unchanged.
 
-  >>> print month_widget.render()
+  >>> print(month_widget.render())
   <input id="widget.id.month" name="widget.name.month"
          class="html5-month-widget"
          value="2013-04" type="month" />

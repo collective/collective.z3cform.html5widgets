@@ -48,7 +48,7 @@ If we render the widget as this we get an input element in a simple wrapper.
 Later, we will show more advanced functionality when using a field-widget.
 
   >>> date_widget.update()
-  >>> print date_widget.render()
+  >>> print(date_widget.render())
     <input id="widget.id.date" name="widget.name.date"
            class="html5-date-widget" type="date" />
 
@@ -61,7 +61,7 @@ We can extract simple data
 
 The rendering is unchanged.
 
-  >>> print date_widget.render()
+  >>> print(date_widget.render())
   <input id="widget.id.date" name="widget.name.date"
          class="html5-date-widget"
          value="2013-04-05" type="date" />

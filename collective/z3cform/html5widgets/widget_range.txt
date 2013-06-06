@@ -48,7 +48,7 @@ If we render the widget as this we get an input element in a simple wrapper.
 Later, we will show more advanced functionality when using a field-widget.
 
   >>> range_widget.update()
-  >>> print range_widget.render()
+  >>> print(range_widget.render())
     <input id="widget.id.range" name="widget.name.range"
            class="html5-range-widget" type="range" />
 
@@ -61,7 +61,7 @@ We can extract simple data
 
 The rendering is unchanged.
 
-  >>> print range_widget.render()
+  >>> print(range_widget.render())
   <input id="widget.id.range" name="widget.name.range"
          class="html5-range-widget"
          value="motdepasse" type="range" />

@@ -48,7 +48,7 @@ If we render the widget as this we get an input element in a simple wrapper.
 Later, we will show more advanced functionality when using a field-widget.
 
   >>> search_widget.update()
-  >>> print search_widget.render()
+  >>> print(search_widget.render())
     <input id="widget.id.search" name="widget.name.search"
            class="html5-search-widget" type="search" />
 
@@ -61,7 +61,7 @@ We can extract simple data
 
 The rendering is unchanged.
 
-  >>> print search_widget.render()
+  >>> print(search_widget.render())
   <input id="widget.id.search" name="widget.name.search"
          class="html5-search-widget"
          value="term" type="search" />
