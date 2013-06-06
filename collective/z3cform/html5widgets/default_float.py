@@ -1,6 +1,5 @@
-
 from zope import schema
-from z3c.form.converter import BaseDataConverter, FloatDataConverter
+from z3c.form.converter import BaseDataConverter
 from zope.i18nmessageid.message import MessageFactory
 
 _ = MessageFactory("collective.z3cform.html5widgets")

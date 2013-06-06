@@ -1,8 +1,8 @@
 import zope.interface
 from zope import schema
 from zope.schema.vocabulary import SimpleVocabulary
-from z3c.form.browser.interfaces import IHTMLInputWidget, IHTMLTextInputWidget
-from z3c.form.browser.widget import HTMLInputWidget, HTMLTextInputWidget
+from z3c.form.browser.interfaces import IHTMLTextInputWidget
+from z3c.form.browser.widget import HTMLTextInputWidget
 from zope.schema.fieldproperty import FieldProperty
 
 required_vocab = SimpleVocabulary.fromValues(['required'])
@@ -39,21 +39,25 @@ TYPES_MATRIX = {
         'text', 'search', 'url', 'tel', 'email', 'password',
         'datepickers', 'range', 'color'
     ],
-    'min': ['number', 'range', 'date', 'datetime', 'datetime-local', 'month',
+    'min': [
+        'number', 'range', 'date', 'datetime', 'datetime-local', 'month',
         'time', 'week'
     ],
-    'max': ['number', 'range', 'date', 'datetime', 'datetime-local', 'month',
+    'max': [
+        'number', 'range', 'date', 'datetime', 'datetime-local', 'month',
         'time', 'week'
     ],
     'maxlength': ['text', 'url', 'tel', 'email', 'password'],
     'pattern': ['text', 'search', 'url', 'tel', 'email', 'password'],
     'placeholder': ['text', 'search', 'url', 'tel', 'email', 'password'],
-    'required_attr': ['text', 'search', 'password', 'url', 'tel', 'email',
+    'required_attr': [
+        'text', 'search', 'password', 'url', 'tel', 'email',
         'date', 'datetime', 'datetime-local', 'month', 'week', 'time',
         'number', 'checkbox', 'radio', 'file'
     ],
     'size': ['text', 'search', 'tel', 'url', 'email', 'password'],
-    'step': ['number', 'range', 'date', 'datetime', 'datetime-local', 'month',
+    'step': [
+        'number', 'range', 'date', 'datetime', 'datetime-local', 'month',
         'time', 'week'
     ],
 }
