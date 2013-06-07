@@ -4,8 +4,6 @@ from datetime import datetime
 #zope
 from zope import schema
 from zope import interface
-from zope import component
-from zope.schema.fieldproperty import FieldProperty
 import z3c.form.browser.widget
 import z3c.form.widget
 from z3c.form.converter import BaseDataConverter

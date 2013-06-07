@@ -10,10 +10,10 @@ class IContentEditableWidget(z3c.form.interfaces.IWidget):
     """ ContentEditable widget marker for z3c.form"""
 
 
-class ContentEditableWidget(z3c.form.browser.widget.HTMLTextInputWidget,
-                z3c.form.widget.Widget):
-    """HTML  widget:
-    """
+class ContentEditableWidget(
+        z3c.form.browser.widget.HTMLTextInputWidget,
+        z3c.form.widget.Widget):
+    """HTML  widget contenteditable"""
 
     interface.implementsOnly(IContentEditableWidget)
 

@@ -2,10 +2,8 @@
 
 from zope import schema
 from zope import interface
-from zope import component
 import z3c.form.browser.widget
 import z3c.form.widget
-from zope.schema.fieldproperty import FieldProperty
 from z3c.form.converter import BaseDataConverter
 from collective.z3cform.html5widgets import base
 from zope.i18nmessageid.message import MessageFactory

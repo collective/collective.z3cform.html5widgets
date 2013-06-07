@@ -5,15 +5,17 @@ from z3c.form import form, button, field
 from plone.z3cform import layout
 from collective.z3cform.html5widgets.widget_tel import TelFieldWidget
 from collective.z3cform.html5widgets.widget_month import MonthFieldWidget
-from collective.z3cform.html5widgets.widget_number import NumberFieldWidget
+#from collective.z3cform.html5widgets.widget_number import NumberFieldWidget
 from collective.z3cform.html5widgets.widget_week import WeekFieldWidget
 from collective.z3cform.html5widgets.widget_email import EmailFieldWidget
 from collective.z3cform.html5widgets.widget_range import RangeFieldWidget
 from collective.z3cform.html5widgets.widget_search import SearchFieldWidget
 from collective.z3cform.html5widgets.widget_color import ColorFieldWidget
-from collective.z3cform.html5widgets.widget_contenteditable import ContentEditableFieldWidget
+from collective.z3cform.html5widgets.widget_contenteditable import \
+    ContentEditableFieldWidget
 
-#from collective.z3cform.html5widgets.widget_datalist import DatalistMultiSelectionFieldWidget
+#from collective.z3cform.html5widgets.widget_datalist import \
+#    DatalistMultiSelectionFieldWidget
 from z3c.formwidget.query.interfaces import IQuerySource
 from Products.CMFCore.utils import getToolByName
 from zope.schema.vocabulary import SimpleTerm, SimpleVocabulary
@@ -65,8 +67,10 @@ class KeywordSourceBinder(object):
 
 class ExampleSchema(interface.Interface):
     color = schema.ASCIILine(title=u"Color", required=False)
-    contenteditable = schema.Text(title=u"Content Editable", required=False,
-                          default=u"<p>editable value</p><p>on multi line</p>")
+    contenteditable = schema.Text(
+        title=u"Content Editable", required=False,
+        default=u"<p>editable value</p><p>on multi line</p>"
+    )
     date = schema.Date(title=u"Date", required=False)
     datetime = schema.Datetime(title=u"Datetime", required=False)
     datetime_local = schema.Datetime(title=u"Datetime local", required=False)

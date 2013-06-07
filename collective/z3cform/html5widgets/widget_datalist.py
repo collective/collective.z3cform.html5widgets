@@ -9,7 +9,6 @@ from plone.formwidget.contenttree.widget import MultiContentTreeWidget
 
 
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-from plone.app.relationfield.widget import RelationListDataManager
 from z3c.form.converter import BaseDataConverter
 from collective.z3cform.html5widgets.base import IHTML5InputWidget,\
     HTML5InputWidget
@@ -18,11 +17,17 @@ from z3c.form.browser.widget import addFieldClass
 #internal
 
 
-class IMultiDatalistWidget(IContentTreeWidget, IHTML5InputWidget, z3c.form.interfaces.IWidget):
+class IMultiDatalistWidget(
+        IContentTreeWidget,
+        IHTML5InputWidget,
+        z3c.form.interfaces.IWidget):
     """Datalist widget marker for z3c.form """
 
 
-class MultiDatalistWidget(MultiContentTreeWidget, HTML5InputWidget,  z3c.form.widget.Widget):
+class MultiDatalistWidget(
+        MultiContentTreeWidget,
+        HTML5InputWidget,
+        z3c.form.widget.Widget):
     interface.implementsOnly(IMultiDatalistWidget)
     input_template = ViewPageTemplateFile('templates/datalist_input.pt')
 
