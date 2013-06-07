@@ -5,6 +5,26 @@ This addon provide many HTML5 form features to z3c.form.
 
 BE WARNED: this addon is quite young, use it at your own risk.
 
+Badges
+======
+
+
+.. image:: https://pypip.in/v/collective.z3cform.html5widgets/badge.png
+    :target: https://crate.io/packages/collective.z3cform.html5widgets/
+    :alt: Latest PyPI version
+
+.. image:: https://pypip.in/d/collective.z3cform.html5widgets/badge.png
+    :target: https://crate.io/packages/collective.z3cform.html5widgets/
+    :alt: Number of PyPI downloads
+
+.. image:: https://secure.travis-ci.org/toutpt/collective.z3cform.html5widgets.png
+    :target: http://travis-ci.org/#!/toutpt/collective.z3cform.html5widgets
+
+.. image:: https://coveralls.io/repos/toutpt/collective.z3cform.html5widgets/badge.png?branch=master
+    :alt: Coverage
+    :target: https://coveralls.io/r/toutpt/collective.z3cform.html5widgets
+
+
 Widgets
 =======
 
