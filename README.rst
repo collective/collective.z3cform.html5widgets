@@ -17,12 +17,12 @@ Badges
     :target: https://crate.io/packages/collective.z3cform.html5widgets/
     :alt: Number of PyPI downloads
 
-.. image:: https://secure.travis-ci.org/toutpt/collective.z3cform.html5widgets.png
-    :target: http://travis-ci.org/#!/toutpt/collective.z3cform.html5widgets
+.. image:: https://secure.travis-ci.org/collective/collective.z3cform.html5widgets.png
+    :target: http://travis-ci.org/#!/collective/collective.z3cform.html5widgets
 
-.. image:: https://coveralls.io/repos/toutpt/collective.z3cform.html5widgets/badge.png?branch=master
+.. image:: https://coveralls.io/repos/collective/collective.z3cform.html5widgets/badge.png?branch=master
     :alt: Coverage
-    :target: https://coveralls.io/r/toutpt/collective.z3cform.html5widgets
+    :target: https://coveralls.io/r/collective/collective.z3cform.html5widgets
 
 
 Widgets
