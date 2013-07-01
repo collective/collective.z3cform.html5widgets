@@ -36,7 +36,7 @@
         value view/value;" />
 
 <script type="text/javascript" tal:content="string:$('#${view/id}-div').bind('input', function(event){
-  $('#${view/id}').attr('value', event.originalEvent.srcElement.innerHTML);
+  $('#${view/id}').attr('value', document.getElementById('${view/id}-div').innerHTML);
 });"></script>
 
 </tal:root>

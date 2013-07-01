@@ -26,7 +26,7 @@
         value inputvalue;" />
 
 <script type="text/javascript" tal:content="string:$('#${jqid}-div').bind('input', function(event){
-  $('#${jqid}').attr('value', event.originalEvent.srcElement.innerHTML);
+  $('#${jqid}').attr('value', document.getElementById('${element_id}-div').innerHTML);
 });
 /*add ckeditor support which do not send input on change*/
 setInterval(function(){
