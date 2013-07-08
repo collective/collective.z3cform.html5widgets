@@ -10,7 +10,7 @@ from z3c.form.converter import BaseDataConverter
 from zope.i18nmessageid.message import MessageFactory
 
 #plone
-import plone.app.z3cform
+from plone.app.z3cform import widget
 
 #internal
 from collective.z3cform.html5widgets import base
@@ -36,7 +36,7 @@ class IDateTimeWidget(base.IHTML5InputWidget, z3c.form.interfaces.IWidget):
     """ Date widget marker for z3c.form """
 
 
-class IDateTimeField(plone.app.z3cform.widget.IDatetimeField):
+class IDateTimeField(widget.IDatetimeField):
     """ Special marker for date fields that use our widget """
 
 
@@ -71,8 +71,12 @@ class DateTimeConverter(BaseDataConverter):
     def toFieldValue(self, value):
         if not value:
             return self.field.missing_value
+#        import pdb;pdb.set_trace()
         value_length = len(value)
-        if value_length == 17:
+        if value_length == 16:
+            #2013-08-01T01:01
+            pattern = '%Y-%m-%dT%H:%M'
+        elif value_length == 17:
             #2012-01-26-T13:37
             pattern = '%Y-%m-%d-T%H:%M'
         elif value_length == 18:
@@ -91,10 +95,12 @@ class DateTimeConverter(BaseDataConverter):
             #2012-01-26-T13:37:01.00Z
             pattern = '%Y-%m-%d-T%H:%M:%S.00Z'
         else:
+            import pdb;pdb.set_trace()
             raise self.raise_error()
         try:
             return datetime.strptime(value, pattern)
         except ValueError:
+            import pdb;pdb.set_trace()
             self.raise_error()
 
     def raise_error(self):
