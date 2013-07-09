@@ -95,12 +95,10 @@ class DateTimeConverter(BaseDataConverter):
             #2012-01-26-T13:37:01.00Z
             pattern = '%Y-%m-%d-T%H:%M:%S.00Z'
         else:
-            import pdb;pdb.set_trace()
             raise self.raise_error()
         try:
             return datetime.strptime(value, pattern)
         except ValueError:
-            import pdb;pdb.set_trace()
             self.raise_error()
 
     def raise_error(self):
