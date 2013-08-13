@@ -60,5 +60,11 @@ class DateTimeLocalValidationError(schema.ValidationError, ValueError):
 
 
 class DateTimeLocalConverter(DateTimeConverter):
+
+    def toWidgetValue(self, value):
+        if value is self.field.missing_value:
+            return ''
+        return value.strftime('%Y-%m-%dT%H:%M')
+
     def raise_error(self):
         raise DateTimeLocalValidationError

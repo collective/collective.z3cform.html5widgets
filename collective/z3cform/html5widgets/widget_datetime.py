@@ -1,5 +1,6 @@
 #python
 from datetime import datetime
+import pytz
 
 #zope
 from zope import schema
@@ -30,6 +31,7 @@ from collective.z3cform.html5widgets import base
 
 FORMAT = '%Y-%m-%d-T%H:%MZ'
 _ = MessageFactory("collective.z3cform.html5widgets")
+utc=pytz.UTC
 
 
 class IDateTimeWidget(base.IHTML5InputWidget, z3c.form.interfaces.IWidget):
@@ -66,7 +68,7 @@ class DateTimeConverter(BaseDataConverter):
     def toWidgetValue(self, value):
         if value is self.field.missing_value:
             return ''
-        return value.strftime('%Y-%m-%d-T%H:%MZ')
+        return value.strftime('%Y-%m-%dT%H:%MZ')
 
     def toFieldValue(self, value):
         if not value:
@@ -97,7 +99,7 @@ class DateTimeConverter(BaseDataConverter):
         else:
             raise self.raise_error()
         try:
-            return datetime.strptime(value, pattern)
+            return utc.localize(datetime.strptime(value, pattern))
         except ValueError:
             self.raise_error()
 
