@@ -66,5 +66,13 @@ class DateTimeLocalConverter(DateTimeConverter):
             return ''
         return value.strftime('%Y-%m-%dT%H:%M')
 
+
+    def toFieldValue(self, value):
+        value = DateTimeConverter.toFieldValue(self, value)
+        if value is not self.field.missing_value:
+            #make it utc unaware
+            value.replace(tzinfo=None)
+        return value
+
     def raise_error(self):
         raise DateTimeLocalValidationError
