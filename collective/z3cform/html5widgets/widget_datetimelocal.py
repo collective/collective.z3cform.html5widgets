@@ -6,7 +6,8 @@ import z3c.form.widget
 from zope.i18nmessageid.message import MessageFactory
 
 #plone
-import plone.app.z3cform
+from plone.app.z3cform.widget import IDatetimeField as pazd
+from plone.formwidget.datetime.z3cform.interfaces import IDatetimeField as pfd
 
 #internal
 from collective.z3cform.html5widgets.widget_datetime import DateTimeConverter
@@ -33,7 +34,7 @@ class IDateTimeLocalWidget(base.IHTML5InputWidget,
     """
 
 
-class IDateTimeLocalField(plone.app.z3cform.widget.IDatetimeField):
+class IDateTimeLocalField(pazd, pfd):
     """ Special marker for date fields that use our widget """
 
 
