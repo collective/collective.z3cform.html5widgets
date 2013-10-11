@@ -10,7 +10,8 @@ from z3c.form.converter import BaseDataConverter
 from zope.i18nmessageid.message import MessageFactory
 
 #plone
-from plone.app.z3cform import widget
+from plone.app.z3cform.widget import IDateField as pazd
+from plone.formwidget.datetime.z3cform.interfaces import IDateField as pfd
 
 #internal
 from collective.z3cform.html5widgets import base
@@ -25,7 +26,7 @@ class IDateWidget(base.IHTML5InputWidget, z3c.form.interfaces.IWidget):
     """Date widget marker for z3c.form """
 
 
-class IDateField(widget.IDateField):
+class IDateField(pazd, pfd):
     pass
 
 
