@@ -31,7 +31,7 @@ from collective.z3cform.html5widgets import base
 
 FORMAT = '%Y-%m-%d-T%H:%MZ'
 _ = MessageFactory("collective.z3cform.html5widgets")
-utc=pytz.UTC
+utc = pytz.UTC
 
 
 class IDateTimeWidget(base.IHTML5InputWidget, z3c.form.interfaces.IWidget):
@@ -73,8 +73,17 @@ class DateTimeConverter(BaseDataConverter):
     def toFieldValue(self, value):
         if not value:
             return self.field.missing_value
-#        import pdb;pdb.set_trace()
+
+        pattern = self.getDatePattern(value)
+
+        try:
+            return utc.localize(datetime.strptime(value, pattern))
+        except ValueError:
+            self.raise_error()
+
+    def getDatePattern(self, value):
         value_length = len(value)
+
         if value_length == 16:
             #2013-08-01T01:01
             pattern = '%Y-%m-%dT%H:%M'
@@ -98,10 +107,7 @@ class DateTimeConverter(BaseDataConverter):
             pattern = '%Y-%m-%d-T%H:%M:%S.00Z'
         else:
             raise self.raise_error()
-        try:
-            return utc.localize(datetime.strptime(value, pattern))
-        except ValueError:
-            self.raise_error()
+        return pattern
 
     def raise_error(self):
         raise DateTimeValidationError
