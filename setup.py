@@ -36,6 +36,7 @@ setup(name='collective.z3cform.html5widgets',
           'setuptools',
           'plone.app.z3cform',
           'plone.formwidget.autocomplete',
+          'plone.formwidget.datetime',
           # -*- Extra requirements: -*-
       ],
       extras_require=dict(
