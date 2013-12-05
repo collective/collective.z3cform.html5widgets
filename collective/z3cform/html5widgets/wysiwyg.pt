@@ -28,11 +28,12 @@
 <script type="text/javascript" tal:content="string:$('#${jqid}-div').bind('input', function(event){
   $('#${jqid}').attr('value', document.getElementById('${element_id}-div').innerHTML);
 });
-/*add ckeditor support which do not send input on change*/
 setInterval(function(){
   if (typeof CKEDITOR != 'undefined'){
+    if (typeof CKEDITOR.instances != 'undefined'){
       var editor = CKEDITOR.instances['${element_id}-div'];
       $('#${jqid}').attr('value', editor.getData());
+    }
   }
 }, 1000);"></script>
 
